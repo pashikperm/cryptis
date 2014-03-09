@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 class RESPProtocol {
     public void sendCommand(RESPOutputStream out,
-                            RedisCommand command) throws IOException {
+            RedisCommand command) throws IOException {
         try {
             out.writeObject(command.protocolRepresentation());
         } catch (ProtocolWriteException e) {
@@ -23,7 +23,7 @@ class RESPProtocol {
     }
 
     public void sendParametrizedCommand(RESPOutputStream out,
-                                        RedisParametrizedCommand command, Object... args) throws IOException {
+            RedisParametrizedCommand command, Object... args) throws IOException {
         try {
             out.writeObject(command.protocolRepresentation(args));
         } catch (ProtocolWriteException e) {
