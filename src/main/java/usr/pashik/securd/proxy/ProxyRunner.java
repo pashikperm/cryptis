@@ -31,8 +31,6 @@ public class ProxyRunner {
     public void start(@Observes ContainerInitialized initialized) throws IOException {
         ServiceActivator.activateServices();
 
-//        log = logService.getLogger(this);
-
         ServerSocket serverSocket = new ServerSocket(config.getProxyPort());
         log.info(String.format("Start proxy [acceptingPort=%d, serverHost=%s, serverPort=%d]", config.getProxyPort(), config.getServerHost(), config.getServerPort()));
 

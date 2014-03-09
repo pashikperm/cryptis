@@ -18,17 +18,17 @@ public class ClientProcessor implements Runnable {
 
     @Override
     public void run() {
-//        try {
-//            while (true) {
-//                RedisCommand command = client.readCommand();
-//                server.sendCommand(command);
-//                RESPObject responce = server.readResponce();
-//                client.writeResponce(responce);
-//
-//                System.out.println("command = " + command + ", responce = " + responce);
-//    }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            while (true) {
+                RedisCommand command = client.readCommand();
+                server.sendCommand(command);
+                RESPObject responce = server.readResponce();
+                client.writeResponce(responce);
+
+                System.out.println("command = " + command + ", responce = " + responce);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
