@@ -8,9 +8,9 @@ import java.util.Set;
 /**
  * Created by pashik on 05.03.14 22:52.
  */
-public class Runner {
+public class TestRunner {
     public static void main(String[] args) {
-        System.out.println("usr.pashik.securd.Runner.main");
+        System.out.println("usr.pashik.securd.TestRunner.main");
         System.out.println("args = [" + args + "]");
 
         Jedis jedis = new Jedis("localhost");

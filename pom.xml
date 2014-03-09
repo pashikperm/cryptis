@@ -9,6 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!--weld dependency injector-->
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se</artifactId>
+            <version>2.1.0.Final</version>
+        </dependency>
+
         <!--jedis-->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -26,22 +33,27 @@
         </dependency>
 
         <!--log4j2-->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.0-rc1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.0-rc1</version>
-        </dependency>
-        <!--SLF4J log4j2 bridge-->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.0-rc1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-api</artifactId>-->
+            <!--<version>2.0-rc1</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-core</artifactId>-->
+            <!--<version>2.0-rc1</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;SLF4J log4j2 bridge&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-slf4j-impl</artifactId>-->
+            <!--<version>2.0-rc1</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash;log4j1 to log4j2 bridge&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-1.2-api</artifactId>-->
+            <!--<version>2.0-rc1</version>-->
+        <!--</dependency>-->
     </dependencies>
-
 </project>
