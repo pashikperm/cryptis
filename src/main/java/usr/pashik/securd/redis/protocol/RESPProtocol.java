@@ -1,9 +1,9 @@
-package usr.pashik.securd.protocol;
+package usr.pashik.securd.redis.protocol;
 
-import usr.pashik.securd.protocol.commands.RedisCommand;
-import usr.pashik.securd.protocol.commands.RedisParametrizedCommand;
-import usr.pashik.securd.protocol.exceptions.ProtocolParseException;
-import usr.pashik.securd.protocol.exceptions.ProtocolWriteException;
+import usr.pashik.securd.redis.protocol.commands.RedisCommand;
+import usr.pashik.securd.redis.protocol.commands.RedisParametrizedCommand;
+import usr.pashik.securd.redis.protocol.exceptions.ProtocolParseException;
+import usr.pashik.securd.redis.protocol.exceptions.ProtocolWriteException;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ class RESPProtocol {
         }
     }
 
-    public Object readResponce(RESPInputStream in) throws IOException {
+    public Object readResponse(RESPInputStream in) throws IOException {
         try {
             return in.readObject();
         } catch (ProtocolParseException e) {

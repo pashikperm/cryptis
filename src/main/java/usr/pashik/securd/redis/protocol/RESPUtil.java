@@ -1,4 +1,4 @@
-package usr.pashik.securd.protocol;
+package usr.pashik.securd.redis.protocol;
 
 /**
  * Created by pashik on 09.03.14 16:19.

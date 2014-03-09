@@ -1,6 +1,6 @@
-package usr.pashik.securd.protocol;
+package usr.pashik.securd.redis.protocol;
 
-import usr.pashik.securd.protocol.exceptions.ProtocolParseException;
+import usr.pashik.securd.redis.protocol.exceptions.ProtocolParseException;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

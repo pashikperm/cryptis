@@ -1,6 +1,6 @@
 package usr.pashik.securd.platform.configurator;
 
-import usr.pashik.securd.protocol.RESPUtil;
+import usr.pashik.securd.redis.protocol.RESPUtil;
 
 import javax.enterprise.context.ApplicationScoped;
 

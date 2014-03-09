@@ -5,7 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
-import usr.pashik.securd.protocol.RESPClient;
+import usr.pashik.securd.redis.RedisClient;
+import usr.pashik.securd.redis.RedisServer;
 
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -16,11 +17,11 @@ import java.net.Socket;
 /**
  * Created by pashik on 06.03.14 23:43.
  */
-public class ProxyRunner {
+public class SecurdRunner {
     @Inject
     ConfiguratorService config;
 
-    Logger log = LogManager.getLogger(ProxyRunner.class);
+    Logger log = LogManager.getLogger(SecurdRunner.class);
 
     public static void main(String[] args) {
         Weld weld = new Weld();
@@ -43,9 +44,9 @@ public class ProxyRunner {
                                    clientSocket.getInetAddress(),
                                    clientSocket.getLocalPort()));
 
-            RESPClient client = new RESPClient(clientSocket);
-            RESPClient server = new RESPClient();
-            new Thread(new ClientProcessor(client, server)).start();
+            RedisClient client = new RedisClient(clientSocket);
+            RedisServer server = new RedisServer();
+//            new Thread(new ClientProcessor(client, server)).start();
         }
     }
 }

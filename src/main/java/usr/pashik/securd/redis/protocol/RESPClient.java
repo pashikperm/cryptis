@@ -1,4 +1,4 @@
-package usr.pashik.securd.protocol;
+package usr.pashik.securd.redis.protocol;
 
 import java.io.IOException;
 import java.net.Socket;
