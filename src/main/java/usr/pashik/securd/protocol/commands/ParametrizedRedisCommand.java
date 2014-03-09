@@ -12,7 +12,7 @@ public class ParametrizedRedisCommand implements RedisParametrizedCommand {
 
     @Override
     public Object protocolRepresentation(Object... args) {
-        Object[] result = new Object[args.length+1];
+        Object[] result = new Object[args.length + 1];
         result[0] = name;
         for (int i = 0; i < args.length; i++) {
             result[i] = args;

@@ -2,18 +2,17 @@
 <Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
-            <PatternLayout pattern="%logger{36} %msg%n"/>
+            <PatternLayout pattern="%C{1} %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="all">
+        <Root level="ALL">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 
     <category name="org.jboss">
-        <priority value="off"/>
+        <priority value="OFF"/>
     </category>
 
 </Configuration>
