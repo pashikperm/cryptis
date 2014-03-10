@@ -1,9 +1,8 @@
 package usr.pashik.securd.redis.protocol;
 
-import usr.pashik.securd.redis.protocol.commands.RedisCommand;
-import usr.pashik.securd.redis.protocol.commands.RedisParametrizedCommand;
-import usr.pashik.securd.redis.protocol.exceptions.ProtocolParseException;
-import usr.pashik.securd.redis.protocol.exceptions.ProtocolWriteException;
+import usr.pashik.securd.redis.protocol.command.RedisParametrizedCommand;
+import usr.pashik.securd.redis.protocol.exception.ProtocolParseException;
+import usr.pashik.securd.redis.protocol.exception.ProtocolWriteException;
 
 import java.io.IOException;
 

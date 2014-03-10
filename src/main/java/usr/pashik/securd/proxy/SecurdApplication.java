@@ -3,8 +3,7 @@ package usr.pashik.securd.proxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
-import usr.pashik.securd.redis.RedisClient;
-import usr.pashik.securd.redis.RedisServer;
+import usr.pashik.securd.proxy.client.ClientProcessorBuilder;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -21,8 +20,6 @@ public class SecurdApplication {
     Logger log = LogManager.getLogger(SecurdRunner.class);
 
     public void start() throws IOException {
-        ServiceActivator.activateServices();
-
         ServerSocket serverSocket = new ServerSocket(config.getProxyPort());
         log.info(String.format("Start proxy [acceptingPort=%d, serverHost=%s, serverPort=%d]",
                                config.getProxyPort(),
@@ -35,9 +32,7 @@ public class SecurdApplication {
                                    clientSocket.getInetAddress(),
                                    clientSocket.getLocalPort()));
 
-            RedisClient client = new RedisClient(clientSocket);
-            RedisServer server = new RedisServer();
-//            new Thread(new ClientProcessor(client, server)).start();
+            new Thread(ClientProcessorBuilder.build(clientSocket)).start();
         }
     }
 

@@ -1,4 +1,4 @@
-package usr.pashik.securd.redis;
+package usr.pashik.securd.redis.connection;
 
 import usr.pashik.securd.redis.protocol.RESPClient;
 
@@ -8,12 +8,12 @@ import java.net.Socket;
 /**
  * Created by pashik on 10.03.14 0:33.
  */
-public class RedisClient extends RESPClient {
-    public RedisClient() throws IOException {
+public class RedisServer extends RESPClient {
+    public RedisServer() throws IOException {
         super();
     }
 
-    public RedisClient(Socket socket) throws IOException {
+    public RedisServer(Socket socket) throws IOException {
         super(socket);
     }
 }

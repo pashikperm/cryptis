@@ -22,7 +22,7 @@ public class ServerCommandEngine {
 
         ServerCommand command = findCommand(commandName);
         if (command == null) {
-            return String.format("Unknown command = %s", command);
+            return String.format("Unknown servercommand = %s", command);
         }
 
         return command.execute(args);

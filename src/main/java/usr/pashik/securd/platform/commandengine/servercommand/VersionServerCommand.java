@@ -1,6 +1,6 @@
 package usr.pashik.securd.platform.commandengine.servercommand;
 
-import usr.pashik.securd.bean.BeanedRunner;
+import usr.pashik.securd.platform.bean.BeanedRunner;
 import usr.pashik.securd.platform.commandengine.ServerCommand;
 
 import java.io.IOException;

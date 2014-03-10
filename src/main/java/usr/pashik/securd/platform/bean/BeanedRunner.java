@@ -1,4 +1,4 @@
-package usr.pashik.securd.bean;
+package usr.pashik.securd.platform.bean;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;

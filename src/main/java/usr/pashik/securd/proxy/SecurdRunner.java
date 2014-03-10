@@ -1,6 +1,6 @@
 package usr.pashik.securd.proxy;
 
-import usr.pashik.securd.bean.BeanedRunner;
+import usr.pashik.securd.platform.bean.BeanedRunner;
 
 import java.io.IOException;
 
@@ -10,6 +10,8 @@ import java.io.IOException;
 public class SecurdRunner extends BeanedRunner {
     public static void main(String[] args) throws IOException {
         new SecurdRunner().initialize(args);
+
+        SecurdServiceActivator.activateServices();
         getWeldContainer().instance().select(SecurdApplication.class).get().start();
     }
 }
