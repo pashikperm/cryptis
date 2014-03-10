@@ -1,4 +1,4 @@
-package usr.pashik.securd;
+package usr.pashik.securd.redis;
 
 import org.redisson.Redisson;
 import redis.clients.jedis.Jedis;
@@ -8,9 +8,9 @@ import java.util.Set;
 /**
  * Created by pashik on 05.03.14 22:52.
  */
-public class TestRunner {
+public class TestRedisRunner {
     public static void main(String[] args) {
-        System.out.println("usr.pashik.securd.TestRunner.main");
+        System.out.println("usr.pashik.securd.proxy.TestRunner.main");
         System.out.println("args = [" + args + "]");
 
         Jedis jedis = new Jedis("localhost");

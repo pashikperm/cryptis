@@ -23,11 +23,10 @@ public class RedisOutputStream extends BufferedOutputStream {
     }
 
     private void writeInteger(int value) throws IOException {
-        write(INTEGER_PREFIX);
         writeRawString(Integer.toString(value));
     }
 
-    private void writeBulkStringRaw(byte[] value) throws IOException {
+    private void writeBulkRaw(byte[] value) throws IOException {
         write(BULK_PREFIX);
         if (value == null) {
             writeInteger(-1);
@@ -45,7 +44,6 @@ public class RedisOutputStream extends BufferedOutputStream {
         for (int i = 0; i < value.length; i++) {
             writeObject(value[i]);
         }
-        write(TERMINATOR);
     }
 
     public void writeObject(RedisObject value) throws IOException, RedisProtocolWriteException {
@@ -63,7 +61,7 @@ public class RedisOutputStream extends BufferedOutputStream {
                 writeRawString(value.svalue);
                 break;
             case BULK:
-                writeBulkStringRaw(value.bvalue);
+                writeBulkRaw(value.bvalue);
                 break;
             case ARRAY:
                 writeArray(value.avalue);

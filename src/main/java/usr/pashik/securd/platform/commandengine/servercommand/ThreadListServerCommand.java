@@ -18,7 +18,7 @@ public class ThreadListServerCommand extends ServerCommand {
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
         StringBuilder result = new StringBuilder("Thread list:\n");
         for (Thread thread : threadSet) {
-            result.append(String.format("[group=%30s, name=%30s, id=%s]\n",
+            result.append(String.format("[group=%30s, name=%30s, id=%4s]\n",
                                         thread.getThreadGroup().getName(),
                                         thread.getName(),
                                         thread.getId()));

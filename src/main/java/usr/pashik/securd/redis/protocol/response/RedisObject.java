@@ -13,4 +13,26 @@ public class RedisObject {
     public String bsvalue;
 
     public RedisObject[] avalue;
+
+    @Override
+    public String toString() {
+        switch (type) {
+            case STRING:
+                return "+" + svalue + "\n";
+            case ERROR:
+                return "-" + svalue + "\n";
+            case INTEGER:
+                return ":" + ivalue + "\n";
+            case BULK:
+                return "$" + bsvalue.length() + bsvalue + "\n";
+            case ARRAY:
+                StringBuilder result = new StringBuilder("*" + avalue.length + "\n");
+                for (RedisObject redisObject : avalue) {
+                    result.append(redisObject);
+                }
+                return result.toString();
+            default:
+                return "!!!non parsed!!!";
+        }
+    }
 }

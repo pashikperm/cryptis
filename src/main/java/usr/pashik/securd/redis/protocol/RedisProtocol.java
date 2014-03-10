@@ -1,7 +1,7 @@
 package usr.pashik.securd.redis.protocol;
 
 import usr.pashik.securd.redis.command.RedisCommand;
-import usr.pashik.securd.redis.command.UnknownCommand;
+import usr.pashik.securd.redis.command.meta.UnknownRedisCommand;
 import usr.pashik.securd.redis.protocol.exception.RedisProtocolReadException;
 import usr.pashik.securd.redis.protocol.exception.RedisProtocolWriteException;
 import usr.pashik.securd.redis.protocol.response.RedisObject;
@@ -19,12 +19,12 @@ public class RedisProtocol {
 
     public RedisCommand readCommand() throws IOException, RedisProtocolReadException {
         RedisObject redisObject = inputStream.readObject();
-        RedisCommand command = new UnknownCommand(redisObject);
+        RedisCommand command = new UnknownRedisCommand(redisObject);
         return command;
     }
 
     public void sendCommand(RedisCommand command) throws IOException, RedisProtocolWriteException {
-        outputStream.writeObject(command.getInnerRepresentation());
+        outputStream.writeObject(command.getRaw());
         outputStream.flush();
     }
 
