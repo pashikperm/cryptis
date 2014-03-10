@@ -1,4 +1,4 @@
-package usr.pashik.securd.proxy.client;
+package usr.pashik.securd.proxy.clientprocessor;
 
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
 import usr.pashik.securd.redis.connection.RedisChannel;
@@ -14,18 +14,18 @@ public class ClientProcessorBuilder {
     @Inject
     ConfiguratorService config;
 
-//    public static ClientProcessor build(RedisChannel client, RedisChannel server) {
-//        ClientProcessor clientProcessor = new ClientProcessor();
-//        clientProcessor.client = client;
-//        clientProcessor.server = server;
-//        return clientProcessor;
-//    }
-//
-//    public static ClientProcessor build(Socket clientSocket) throws IOException {
-//        RedisChannel client = new RedisChannel(clientSocket);
-//        RedisChannel server = new RedisChannel();
-//        return build(client, server);
-//    }
+    public static SecureClientProcessor buildSecure(RedisChannel client, RedisChannel server) {
+        SecureClientProcessor clientProcessor = new SecureClientProcessor();
+        clientProcessor.client = client;
+        clientProcessor.server = server;
+        return clientProcessor;
+    }
+
+    public static SecureClientProcessor buildSecure(Socket clientSocket) throws IOException {
+        RedisChannel client = new RedisChannel(clientSocket);
+        RedisChannel server = new RedisChannel();
+        return buildSecure(client, server);
+    }
 
     public static TransparentClientProcessor buildTransparent(RedisChannel client, RedisChannel server) {
         TransparentClientProcessor clientProcessor = new TransparentClientProcessor();

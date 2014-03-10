@@ -36,7 +36,7 @@ public class RedisOutputStream extends BufferedOutputStream {
         int length = value.length;
         writeInteger(length);
         write(value);
-        writeTerminator();
+        write(TERMINATOR);
     }
 
     private void writeArray(RedisObject[] value) throws IOException, RedisProtocolWriteException {
@@ -45,7 +45,7 @@ public class RedisOutputStream extends BufferedOutputStream {
         for (int i = 0; i < value.length; i++) {
             writeObject(value[i]);
         }
-        writeTerminator();
+        write(TERMINATOR);
     }
 
     public void writeObject(RedisObject value) throws IOException, RedisProtocolWriteException {
@@ -75,10 +75,6 @@ public class RedisOutputStream extends BufferedOutputStream {
 
     private void writeRawString(String value) throws IOException {
         write(value.getBytes());
-        write(TERMINATOR);
-    }
-
-    private void writeTerminator() throws IOException {
         write(TERMINATOR);
     }
 }

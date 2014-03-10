@@ -3,7 +3,8 @@ package usr.pashik.securd.proxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
-import usr.pashik.securd.proxy.client.ClientProcessorBuilder;
+import usr.pashik.securd.platform.thread.InjectedRunnable;
+import usr.pashik.securd.proxy.clientprocessor.ClientProcessorBuilder;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -26,14 +27,17 @@ public class SecurdApplication {
                                config.getServerHost(),
                                config.getServerPort()));
 
+        ThreadGroup clientThreads = new ThreadGroup("clientProcessor");
         while (true) {
             Socket clientSocket = serverSocket.accept();
             log.info(String.format("Accepted client [host=%s, localPort=%d]",
                                    clientSocket.getInetAddress(),
                                    clientSocket.getLocalPort()));
 
-//            new Thread(ClientProcessorBuilder.build(clientSocket)).start();
-            new Thread(ClientProcessorBuilder.buildTransparent(clientSocket)).start();
+            InjectedRunnable clientProcessor = config.isSecureMode() ?
+                    ClientProcessorBuilder.buildSecure(clientSocket) :
+                    ClientProcessorBuilder.buildTransparent(clientSocket);
+            new Thread(clientThreads, clientProcessor).start();
         }
     }
 

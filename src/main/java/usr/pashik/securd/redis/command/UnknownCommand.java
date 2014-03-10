@@ -29,11 +29,6 @@ public class UnknownCommand extends RedisCommand {
     }
 
     @Override
-    public RedisObject getInnerRepresentation() {
-        return null;
-    }
-
-    @Override
     public String getPrimaryKey() {
         return null;
     }

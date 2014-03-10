@@ -12,7 +12,7 @@ public class DefaultConfigProvider implements ConfigProvider {
         put("proxyPort", "7070");
         put("redisPort", "6379");
         put("redisHost", "localhost");
-        put("secureMode", "true");
+        put("secureMode", "false");
         put("authRetryMaxCount", "3");
     }};
 

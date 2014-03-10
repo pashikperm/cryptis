@@ -17,7 +17,7 @@ public class RedisProtocol {
     protected RedisInputStream inputStream;
     protected RedisOutputStream outputStream;
 
-    RedisCommand readCommand() throws IOException, RedisProtocolReadException {
+    public RedisCommand readCommand() throws IOException, RedisProtocolReadException {
         RedisObject redisObject = inputStream.readObject();
         RedisCommand command = new UnknownCommand(redisObject);
         return command;
