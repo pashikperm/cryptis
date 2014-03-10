@@ -32,7 +32,8 @@ public class SecurdApplication {
                                    clientSocket.getInetAddress(),
                                    clientSocket.getLocalPort()));
 
-            new Thread(ClientProcessorBuilder.build(clientSocket)).start();
+//            new Thread(ClientProcessorBuilder.build(clientSocket)).start();
+            new Thread(ClientProcessorBuilder.buildTransparent(clientSocket)).start();
         }
     }
 
