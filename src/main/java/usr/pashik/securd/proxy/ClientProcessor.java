@@ -3,8 +3,8 @@
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
 //import usr.pashik.securd.platform.configurator.ConfiguratorService;
-//import usr.pashik.securd.platform.users.ConnectedUser;
-//import usr.pashik.securd.platform.users.ConnectedUserAnnotation;
+//import usr.pashik.securd.platform.user.ConnectedUser;
+//import usr.pashik.securd.platform.user.ConnectedUserAnnotation;
 //import usr.pashik.securd.redis.RedisClient;
 //import usr.pashik.securd.redis.RedisServer;
 //
@@ -40,14 +40,14 @@
 //        try {
 //            authUser();
 //            while (true) {
-//                RedisCommand command = client.readCommand();
+//                RedisCommand commandengine = client.readCommand();
 //
-//                if (!verifyAccess(command)) {
+//                if (!verifyAccess(commandengine)) {
 //                    client.sendResponse(new RedisAccessError());
 //                    continue;
 //                }
 //
-//                server.sendCommand(command);
+//                server.sendCommand(commandengine);
 //                RedisResponse response = server.readResponse();
 //                client.sendResponse(response);
 //            }
@@ -58,10 +58,10 @@
 //        }
 //    }
 //
-//    private boolean verifyAccess(RedisCommand command) {
+//    private boolean verifyAccess(RedisCommand commandengine) {
 //        if (config.isSecureMode()) {
 //            AccessRules accessRules = accessService.getUserRules(user);
-//            return accessRules.isAccessed(command);
+//            return accessRules.isAccessed(commandengine);
 //        }
 //        return true;
 //    }
@@ -70,11 +70,11 @@
 //        if (config.isSecureMode()) {
 //            int retryCount = 0;
 //            while (true) {
-//                RedisCommand command = client.readCommand();
+//                RedisCommand commandengine = client.readCommand();
 //
-//                if (command.isAuthCommand()) {
+//                if (commandengine.isAuthCommand()) {
 //                    retryCount++;
-//                    if (accessService.verifyCredentials(user, command)) {
+//                    if (accessService.verifyCredentials(user, commandengine)) {
 //                        break;
 //                    }
 //                    if (retryCount > config.getAuthRetryMaxCount()) {

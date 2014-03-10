@@ -1,4 +1,4 @@
-package usr.pashik.securd.platform.commands;
+package usr.pashik.securd.platform.commandengine;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.HashMap;
@@ -10,22 +10,26 @@ import java.util.StringTokenizer;
  */
 @ApplicationScoped
 public class ServerCommandEngine {
-    Map<String, ServerCommand> availableCommands;
+    final Map<String, ServerCommand> availableCommands;
 
     public ServerCommandEngine() {
         availableCommands = new HashMap<>();
-        collectAvailableCommands();
     }
 
     public String parseAndExecuteCommand(String rawCommand) {
-        String command = getCommandName(rawCommand);
+        String commandName = getCommandName(rawCommand);
         String[] args = getCommandArguments(rawCommand);
 
-        if (!availableCommands.containsKey(command)) {
+        ServerCommand command = findCommand(commandName);
+        if (command == null) {
             return String.format("Unknown command = %s", command);
         }
 
-        return availableCommands.get(command).execute(args);
+        return command.execute(args);
+    }
+
+    public void registerCommand(ServerCommand command) {
+        availableCommands.put(command.getName(), command);
     }
 
     private String getCommandName(String rawCommand) {
@@ -46,8 +50,13 @@ public class ServerCommandEngine {
         return result;
     }
 
-    private void collectAvailableCommands() {
-
+    private ServerCommand findCommand(String name) {
+        for (Map.Entry<String, ServerCommand> entry : availableCommands.entrySet()) {
+            if (entry.getKey().startsWith(name)) {
+                return entry.getValue();
+            }
+        }
+        return null;
     }
 
 }

@@ -1,4 +1,4 @@
-package usr.pashik.securd.platform.users;
+package usr.pashik.securd.platform.user;
 
 import javax.enterprise.context.ApplicationScoped;
 
