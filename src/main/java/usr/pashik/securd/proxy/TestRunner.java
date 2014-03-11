@@ -2,7 +2,7 @@ package usr.pashik.securd.proxy;
 
 import usr.pashik.securd.platform.bean.BeanedRunner;
 import usr.pashik.securd.redis.command.RedisCommand;
-import usr.pashik.securd.redis.command.meta.UnknownRedisCommand;
+import usr.pashik.securd.redis.command.meta.command.UnknownRedisCommand;
 import usr.pashik.securd.redis.connection.RedisChannel;
 import usr.pashik.securd.redis.protocol.exception.RedisProtocolReadException;
 import usr.pashik.securd.redis.protocol.exception.RedisProtocolWriteException;
