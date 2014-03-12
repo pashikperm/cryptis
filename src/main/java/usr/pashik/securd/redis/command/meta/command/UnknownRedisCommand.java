@@ -32,4 +32,9 @@ public class UnknownRedisCommand extends RedisCommand {
     public RedisObject getArguments() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return String.format("UnknownRedisCommand [mnemonic=%15s, type=%10s, familly=%15s]", mnemonic, type, family);
+    }
 }

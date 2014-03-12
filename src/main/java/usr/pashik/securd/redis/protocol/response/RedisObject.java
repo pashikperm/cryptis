@@ -14,6 +14,10 @@ public class RedisObject {
 
     public RedisObject[] avalue;
 
+    public boolean isNull() {
+        return (type == RedisObjectType.BULK && bvalue == null) || (type == RedisObjectType.ARRAY && avalue == null);
+    }
+
     @Override
     public String toString() {
         switch (type) {

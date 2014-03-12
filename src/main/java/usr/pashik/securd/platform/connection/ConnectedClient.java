@@ -15,4 +15,9 @@ public class ConnectedClient {
     public Socket getSocket() {
         return socket;
     }
+
+    @Override
+    public String toString() {
+        return String.format("ConnectedClient [socket=%s]", socket);
+    }
 }

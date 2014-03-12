@@ -31,7 +31,6 @@ public class RedisInputStream extends BufferedInputStream {
     private byte[] readBulkRaw() throws IOException, RedisProtocolReadException {
         int length = readInteger();
         if (length == -1) {
-            verifyTerminator();
             return null;
         }
         byte[] result = new byte[length];
@@ -43,7 +42,6 @@ public class RedisInputStream extends BufferedInputStream {
     private RedisObject[] readArray() throws IOException, RedisProtocolReadException {
         int length = readInteger();
         if (length == -1) {
-            verifyTerminator();
             return null;
         }
         RedisObject[] result = new RedisObject[length];
@@ -73,7 +71,7 @@ public class RedisInputStream extends BufferedInputStream {
             case BULK_PREFIX:
                 result.type = RedisObjectType.BULK;
                 result.bvalue = readBulkRaw();
-                result.bsvalue = new String(result.bvalue);
+                result.bsvalue = result.bvalue != null ? new String(result.bvalue) : null;
                 break;
             case ARRAY_PREFIX:
                 result.type = RedisObjectType.ARRAY;

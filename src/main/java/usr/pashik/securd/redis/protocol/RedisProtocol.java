@@ -1,5 +1,6 @@
 package usr.pashik.securd.redis.protocol;
 
+import usr.pashik.securd.platform.thread.BeanInjector;
 import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.command.RedisCommandService;
 import usr.pashik.securd.redis.protocol.exception.RedisProtocolReadException;
@@ -22,8 +23,15 @@ public class RedisProtocol {
     protected RedisOutputStream outputStream;
 
     public RedisCommand readCommand() throws IOException, RedisProtocolReadException {
+        reInject();
         RedisObject redisObject = inputStream.readObject();
         return commandService.getCommand(redisObject);
+    }
+
+    private void reInject() {
+        if (commandService == null) {
+            BeanInjector.injectFields(this);
+        }
     }
 
     public void sendCommand(RedisCommand command) throws IOException, RedisProtocolWriteException {

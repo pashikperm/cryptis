@@ -35,5 +35,4 @@ public abstract class RedisCommand {
     public abstract String getSecondaryKey();
 
     public abstract RedisObject getArguments();
-
 }

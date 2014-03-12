@@ -22,6 +22,7 @@ public class RedisCommandService {
     RedisCommandService() {
         commands = new HashMap<>();
         unknownFabric = new UnknownRedisCommandFabric();
+        registerFabric(unknownFabric);
     }
 
     public RedisCommand getCommand(RedisObject redisObject) {

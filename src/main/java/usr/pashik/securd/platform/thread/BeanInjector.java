@@ -1,5 +1,7 @@
 package usr.pashik.securd.platform.thread;
 
+import usr.pashik.securd.platform.bean.BeanedRunner;
+
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.BeanManager;
@@ -15,6 +17,10 @@ public class BeanInjector {
         InjectionTarget injectionTarget = beanManager.createInjectionTarget(annotatedType);
         injectionTarget.inject(instance, creationalContext);
         return instance;
+    }
+
+    public static <T> T injectFields(T instance) {
+        return injectFields(BeanedRunner.getBeanManager(), instance);
     }
 
 }

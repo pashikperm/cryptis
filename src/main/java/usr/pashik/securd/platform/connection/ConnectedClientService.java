@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by pashik on 10.03.14 0:34.
  */
 @ApplicationScoped
-public class ConnectedUserService {
+public class ConnectedClientService {
     @Inject
     AuthUserService authUserService;
 
@@ -28,5 +28,9 @@ public class ConnectedUserService {
         connectedClients.remove(user);
         // TODO: FIRE EVENT UNREGISTERED USER
         authUserService.unregisterUser(user);
+    }
+
+    public Set<ConnectedClient> getClients() {
+        return connectedClients;
     }
 }
