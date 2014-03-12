@@ -1,6 +1,7 @@
 package usr.pashik.securd.platform.commandengine;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -9,10 +10,10 @@ import java.util.StringTokenizer;
  * Created by pashik on 10.03.14 1:45.
  */
 @ApplicationScoped
-public class ServerCommandEngine {
+public class ServerCommandService {
     final Map<String, ServerCommand> availableCommands;
 
-    public ServerCommandEngine() {
+    public ServerCommandService() {
         availableCommands = new HashMap<>();
     }
 
@@ -30,6 +31,10 @@ public class ServerCommandEngine {
 
     public void registerCommand(ServerCommand command) {
         availableCommands.put(command.getName(), command);
+    }
+
+    public Collection<ServerCommand> getRegisteredCommands() {
+        return availableCommands.values();
     }
 
     private String getCommandName(String rawCommand) {
@@ -58,5 +63,4 @@ public class ServerCommandEngine {
         }
         return null;
     }
-
 }

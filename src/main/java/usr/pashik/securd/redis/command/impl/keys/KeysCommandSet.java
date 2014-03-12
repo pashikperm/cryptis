@@ -21,9 +21,11 @@ public class KeysCommandSet {
         commandService.registerFabric(new PrimaryKeyRedisCommandFabric(RedisCommandMnemonic.GET,
                                                                        RedisCommandType.READ,
                                                                        RedisCommandFamily.KEYS));
+
         commandService.registerFabric(new PrimaryKeyRedisCommandFabric(RedisCommandMnemonic.SET,
                                                                        RedisCommandType.WRITE,
                                                                        RedisCommandFamily.KEYS));
+
         commandService.registerFabric(new PrimaryKeyRedisCommandFabric(RedisCommandMnemonic.STRLEN,
                                                                        RedisCommandType.INFO,
                                                                        RedisCommandFamily.KEYS));

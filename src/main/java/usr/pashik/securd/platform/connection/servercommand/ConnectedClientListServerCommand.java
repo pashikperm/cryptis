@@ -20,6 +20,11 @@ public class ConnectedClientListServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Prints all opened clients' connections";
+    }
+
+    @Override
     public String execute(String[] args) {
         Set<ConnectedClient> clientSet = clientService.getClients();
         StringBuilder result = new StringBuilder("Client list:\n");

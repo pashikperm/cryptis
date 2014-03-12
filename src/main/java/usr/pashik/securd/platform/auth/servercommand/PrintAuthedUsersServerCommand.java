@@ -12,6 +12,11 @@ public class PrintAuthedUsersServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Prints all authed users";
+    }
+
+    @Override
     public String execute(String[] args) {
         return null;
     }

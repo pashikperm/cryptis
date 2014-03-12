@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 public class ServerConsoleCommandWorker extends InjectedRunnable {
     @Inject
-    ServerCommandEngine commandEngine;
+    ServerCommandService commandEngine;
 
     Scanner input = new Scanner(System.in);
     PrintWriter output = new PrintWriter(System.out);

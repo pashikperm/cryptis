@@ -12,6 +12,11 @@ public class PrintAccessRulesServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Prints all access rules";
+    }
+
+    @Override
     public String execute(String[] args) {
         return null;
     }

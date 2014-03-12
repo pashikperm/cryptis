@@ -13,6 +13,11 @@ public class ExitServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Close all server connections and exit";
+    }
+
+    @Override
     public String execute(String[] args) {
         System.exit(0);
         return "Closed";

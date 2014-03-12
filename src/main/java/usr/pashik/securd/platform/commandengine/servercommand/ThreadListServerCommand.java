@@ -14,6 +14,11 @@ public class ThreadListServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Prints all created threads";
+    }
+
+    @Override
     public String execute(String[] args) {
         Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
         StringBuilder result = new StringBuilder("Thread list:\n");

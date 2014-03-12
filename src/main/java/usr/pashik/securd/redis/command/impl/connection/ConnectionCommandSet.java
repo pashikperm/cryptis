@@ -22,9 +22,11 @@ public class ConnectionCommandSet {
         commandService.registerFabric(new NoKeyRedisCommandFabric(RedisCommandMnemonic.PING,
                                                                   RedisCommandType.SERVICE,
                                                                   RedisCommandFamily.CONNECTION));
+
         commandService.registerFabric(new PrimaryKeyRedisCommandFabric(RedisCommandMnemonic.AUTH,
                                                                        RedisCommandType.SERVICE,
                                                                        RedisCommandFamily.CONNECTION));
+
         commandService.registerFabric(new PrimaryKeyRedisCommandFabric(RedisCommandMnemonic.ECHO,
                                                                        RedisCommandType.SERVICE,
                                                                        RedisCommandFamily.CONNECTION));

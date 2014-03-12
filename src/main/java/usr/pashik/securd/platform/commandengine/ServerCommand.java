@@ -10,11 +10,12 @@ import javax.inject.Inject;
  */
 public abstract class ServerCommand {
     public abstract String getName();
+    public abstract String getDescription();
 
     public abstract String execute(String[] args);
 
     @Inject
-    ServerCommandEngine commandEngine;
+    ServerCommandService commandEngine;
 
     public void onContainerInitialized(@Observes ContainerInitialized initialized) {
         commandEngine.registerCommand(this);

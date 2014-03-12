@@ -21,6 +21,11 @@ public class RedisCommandListServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Prints all supported Redis commands";
+    }
+
+    @Override
     public String execute(String[] args) {
         Collection<RedisCommandFabric> fabrics = commandService.getRegistered();
         StringBuilder result = new StringBuilder("Supported Redis commands:\n");

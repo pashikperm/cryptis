@@ -18,6 +18,11 @@ public class VersionServerCommand extends ServerCommand {
     }
 
     @Override
+    public String getDescription() {
+        return "Prints proxy version";
+    }
+
+    @Override
     public String execute(String[] args) {
         try {
             Class clazz = BeanedRunner.class;
