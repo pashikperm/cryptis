@@ -25,6 +25,6 @@ public class RedisUserbaseProvider extends UserbaseProvider {
 
     @Override
     public int priority() {
-        return 0;
+        return 3;
     }
 }

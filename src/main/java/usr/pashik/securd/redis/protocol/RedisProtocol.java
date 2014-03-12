@@ -1,13 +1,12 @@
 package usr.pashik.securd.redis.protocol;
 
-import usr.pashik.securd.platform.thread.BeanInjector;
+import usr.pashik.securd.platform.bean.BeanedRunner;
 import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.command.RedisCommandService;
-import usr.pashik.securd.redis.protocol.exception.RedisProtocolReadException;
-import usr.pashik.securd.redis.protocol.exception.RedisProtocolWriteException;
+import usr.pashik.securd.redis.exception.RedisProtocolReadException;
+import usr.pashik.securd.redis.exception.RedisProtocolWriteException;
 import usr.pashik.securd.redis.protocol.response.RedisObject;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -15,7 +14,6 @@ import java.net.Socket;
  * Created by pashik on 09.03.14 16:19.
  */
 public class RedisProtocol {
-    @Inject
     RedisCommandService commandService;
 
     protected Socket socket;
@@ -30,7 +28,7 @@ public class RedisProtocol {
 
     private void reInject() {
         if (commandService == null) {
-            BeanInjector.injectFields(this);
+            commandService = BeanedRunner.getWeldContainer().instance().select(RedisCommandService.class).get();
         }
     }
 

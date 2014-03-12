@@ -1,6 +1,6 @@
 package usr.pashik.securd.redis.protocol;
 
-import usr.pashik.securd.redis.protocol.exception.RedisProtocolWriteException;
+import usr.pashik.securd.redis.exception.RedisProtocolWriteException;
 import usr.pashik.securd.redis.protocol.response.RedisObject;
 
 import java.io.BufferedOutputStream;

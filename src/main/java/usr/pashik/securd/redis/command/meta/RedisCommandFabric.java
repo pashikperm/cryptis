@@ -16,6 +16,8 @@ public abstract class RedisCommandFabric {
 
     public abstract RedisCommand build(RedisObject raw);
 
+    public abstract RedisCommand create(Object... args);
+
     public RedisCommandMnemonic getMnemonic() {
         return mnemonic;
     }

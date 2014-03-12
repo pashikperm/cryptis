@@ -1,32 +1,35 @@
 package usr.pashik.securd.platform.configurator;
 
-import usr.pashik.securd.platform.configurator.provider.DefaultConfigProvider;
-import usr.pashik.securd.platform.configurator.provider.FileConfigProvider;
+import usr.pashik.securd.platform.configurator.provider.ConfigProvider;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by pashik on 09.03.14 19:47.
  */
 @ApplicationScoped
 public class ConfiguratorService {
-    @Inject
-    DefaultConfigProvider defaultConfigProvider;
-    @Inject
-    FileConfigProvider fileConfigProvider;
+    Set<ConfigProvider> providers = new TreeSet<>();
 
     public int getProxyPort() {
         return Integer.parseInt(get("proxyPort"));
+    }
+
+    // SERVER
+    public String getServerHost() {
+        return get("redisHost");
     }
 
     public int getServerPort() {
         return Integer.parseInt(get("redisPort"));
     }
 
-    public String getServerHost() {
-        return get("redisHost");
+    public String getServerPassword() {
+        return get("redisPassword");
     }
+
 
     public String getParameter(String name) {
         return get(name);
@@ -41,10 +44,14 @@ public class ConfiguratorService {
     }
 
     private String get(String name) {
-        String result = fileConfigProvider.getParameter(name);
-        if (result != null) return result;
-        result = defaultConfigProvider.getParameter(name);
-        if (result != null) return result;
+        for (ConfigProvider provider : providers) {
+            String result = provider.getParameter(name);
+            if (result != null) return result;
+        }
         return null;
+    }
+
+    public void registerProvider(ConfigProvider provider) {
+        providers.add(provider);
     }
 }

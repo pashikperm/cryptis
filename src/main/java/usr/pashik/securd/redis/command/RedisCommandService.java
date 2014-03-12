@@ -1,5 +1,6 @@
 package usr.pashik.securd.redis.command;
 
+import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.command.meta.RedisCommandFabric;
 import usr.pashik.securd.redis.command.meta.fabric.UnknownRedisCommandFabric;
 import usr.pashik.securd.redis.protocol.response.RedisObject;
@@ -9,7 +10,6 @@ import javax.enterprise.context.ApplicationScoped;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by pashik on 11.03.14 23:18.
@@ -32,6 +32,10 @@ public class RedisCommandService {
             fabric = unknownFabric;
         }
         return fabric.build(redisObject);
+    }
+
+    public RedisCommandFabric getCommandFabric(RedisCommandMnemonic commandMnemonic) {
+        return commands.get(commandMnemonic.name());
     }
 
     public void registerFabric(RedisCommandFabric fabric) {

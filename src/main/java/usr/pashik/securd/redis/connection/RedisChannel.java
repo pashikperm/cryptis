@@ -12,12 +12,6 @@ import java.net.Socket;
  * Created by pashik on 10.03.14 0:33.
  */
 public class RedisChannel extends RedisProtocol {
-    public RedisChannel() throws IOException {
-        super();
-        socket = new Socket("localhost", RedisUtil.DEFAULT_PORT);
-        buildStreams(socket);
-    }
-
     public RedisChannel(Socket socket) throws IOException {
         super();
         this.socket = socket;

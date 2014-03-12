@@ -23,4 +23,9 @@ public class UnknownRedisCommandFabric extends RedisCommandFabric {
     public RedisCommand build(RedisObject raw) {
         return new UnknownRedisCommand(raw);
     }
+
+    @Override
+    public RedisCommand create(Object... args) {
+        return null;
+    }
 }

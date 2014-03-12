@@ -6,7 +6,6 @@ import usr.pashik.securd.redis.command.meta.RedisCommandFabric;
 
 import javax.inject.Inject;
 import java.util.Collection;
-import java.util.Set;
 
 /**
  * Created by pashik on 12.03.14 0:37.

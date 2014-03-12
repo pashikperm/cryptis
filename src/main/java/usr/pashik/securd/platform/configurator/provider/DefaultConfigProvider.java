@@ -7,17 +7,26 @@ import java.util.HashMap;
  * Created by pashik on 10.03.14 17:08.
  */
 @ApplicationScoped
-public class DefaultConfigProvider implements ConfigProvider {
+public class DefaultConfigProvider extends ConfigProvider {
     final HashMap<String, String> defaults = new HashMap<String, String>() {{
         put("proxyPort", "7070");
-        put("redisPort", "6379");
+
         put("redisHost", "localhost");
+        put("redisPort", "6379");
+        put("redisPassword", "pashik");
+
         put("secureMode", "false");
+        put("authRetryMaxCount", "3");
         put("authRetryMaxCount", "3");
     }};
 
     @Override
     public String getParameter(String key) {
         return defaults.get(key);
+    }
+
+    @Override
+    public int priority() {
+        return 0;
     }
 }

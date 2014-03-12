@@ -7,12 +7,9 @@ import usr.pashik.securd.platform.connection.ConnectedClient;
 import usr.pashik.securd.platform.connection.ConnectedClientService;
 import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.connection.RedisChannel;
-import usr.pashik.securd.redis.protocol.exception.RedisProtocolReadException;
-import usr.pashik.securd.redis.protocol.exception.RedisProtocolWriteException;
 import usr.pashik.securd.redis.protocol.response.RedisObject;
 
 import javax.inject.Inject;
-import java.io.IOException;
 
 /**
  * Created by pashik on 06.03.14 23:47.
