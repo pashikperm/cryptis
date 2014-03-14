@@ -3,7 +3,6 @@ package usr.pashik.securd.platform.auth.servercommand;
 import usr.pashik.securd.platform.auth.AuthedUser;
 import usr.pashik.securd.platform.auth.AuthedUserService;
 import usr.pashik.securd.platform.commandengine.ServerCommand;
-import usr.pashik.securd.platform.connection.ConnectedClient;
 
 import javax.inject.Inject;
 import java.util.Collection;

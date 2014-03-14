@@ -4,7 +4,6 @@ import usr.pashik.securd.platform.userbase.UserInfo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
 
 /**
  * Created by pashik on 10.03.14 17:53.

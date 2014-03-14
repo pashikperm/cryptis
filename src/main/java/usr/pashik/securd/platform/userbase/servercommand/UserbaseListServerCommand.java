@@ -1,6 +1,5 @@
 package usr.pashik.securd.platform.userbase.servercommand;
 
-import usr.pashik.securd.platform.auth.AuthedUser;
 import usr.pashik.securd.platform.commandengine.ServerCommand;
 import usr.pashik.securd.platform.userbase.UserInfo;
 import usr.pashik.securd.platform.userbase.UserbaseService;

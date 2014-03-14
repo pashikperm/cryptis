@@ -8,7 +8,6 @@ import usr.pashik.securd.platform.auth.exception.IncorrectUserNameException;
 import usr.pashik.securd.platform.connection.ConnectedClient;
 import usr.pashik.securd.platform.userbase.UserInfo;
 import usr.pashik.securd.platform.userbase.UserbaseService;
-import usr.pashik.securd.proxy.clientprocessor.ClientProcessor;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
