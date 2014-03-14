@@ -7,10 +7,8 @@ import javax.inject.Inject;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by pashik on 12.03.14 12:52.
@@ -31,7 +29,7 @@ public class PrintConfigServerCommand extends ServerCommand {
 
     @Override
     public String execute(String[] args) throws InvocationTargetException, IllegalAccessException {
-        final List<String> prohibitedParts = new LinkedList<String>(){{
+        final List<String> prohibitedParts = new LinkedList<String>() {{
             add("getTargetClass");
             add("getTargetInstance");
             add("getClass");

@@ -2,10 +2,13 @@ package usr.pashik.securd.proxy.clientprocessor;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import usr.pashik.securd.auth.RedisAuthService;
+import usr.pashik.securd.platform.auth.AuthedUser;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
 import usr.pashik.securd.platform.connection.ConnectedClient;
 import usr.pashik.securd.platform.connection.ConnectedClientService;
 import usr.pashik.securd.redis.command.RedisCommand;
+import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.connection.RedisChannel;
 import usr.pashik.securd.redis.protocol.object.RedisObject;
 
@@ -20,6 +23,9 @@ public class SecureClientProcessor extends ClientProcessor {
     @Inject
     ConnectedClientService clientService;
 
+    @Inject
+    RedisAuthService authService;
+
     RedisChannel client;
     RedisChannel server;
 
@@ -29,8 +35,12 @@ public class SecureClientProcessor extends ClientProcessor {
     public void runInjected() {
         ConnectedClient connectedClient = clientService.registerConnection(client.getSocket());
         try {
+            AuthedUser authedUser = authService.authUser(connectedClient);
             while (true) {
                 RedisCommand command = client.readCommand();
+                if (command.getMnemonic() == RedisCommandMnemonic.AUTH) {
+                    //reauth
+                }
                 log.info(command);
                 server.sendCommand(command);
                 RedisObject response = server.readResponse();

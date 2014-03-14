@@ -3,8 +3,6 @@ package usr.pashik.securd.platform.commandengine;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.rmi.runtime.Log;
-import usr.pashik.securd.platform.commandengine.exception.UnknownServerCommand;
 import usr.pashik.securd.platform.thread.InjectedRunnable;
 
 import javax.inject.Inject;

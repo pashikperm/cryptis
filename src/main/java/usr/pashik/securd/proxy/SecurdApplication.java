@@ -35,10 +35,6 @@ public class SecurdApplication {
         ThreadGroup clientThreads = new ThreadGroup("clientProcessor");
         while (true) {
             Socket clientSocket = serverSocket.accept();
-            log.info(String.format("Accepted client [host=%s, localPort=%d]",
-                                   clientSocket.getInetAddress(),
-                                   clientSocket.getLocalPort()));
-
             InjectedRunnable clientProcessor = clientProcessorFabric.build(clientSocket);
             new Thread(clientThreads, clientProcessor).start();
         }

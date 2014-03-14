@@ -3,7 +3,6 @@ package usr.pashik.securd.redis.connection;
 import usr.pashik.securd.redis.protocol.RedisInputStream;
 import usr.pashik.securd.redis.protocol.RedisOutputStream;
 import usr.pashik.securd.redis.protocol.RedisProtocol;
-import usr.pashik.securd.redis.protocol.RedisUtil;
 
 import java.io.IOException;
 import java.net.Socket;
