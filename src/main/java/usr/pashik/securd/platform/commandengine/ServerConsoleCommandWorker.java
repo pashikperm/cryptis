@@ -26,6 +26,7 @@ public class ServerConsoleCommandWorker extends InjectedRunnable {
         while (true) {
             try {
                 String command = readCommand();
+                if (command == null) break;
                 executeCommand(command);
                 writeWelcome(true);
             } catch (Exception e) {
@@ -42,9 +43,14 @@ public class ServerConsoleCommandWorker extends InjectedRunnable {
     }
 
     private String readCommand() {
-        String command;
-        while ((command = input.nextLine()).length() == 0) {
-            writeWelcome(false);
+        String command = null;
+        while (input.hasNextLine()) {
+            command = input.nextLine();
+            if (command != null && command.length() == 0) {
+                writeWelcome(false);
+            } else {
+                break;
+            }
         }
         return command;
     }

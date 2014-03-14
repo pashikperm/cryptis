@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by pashik on 12.03.14 12:52.
  */
-public class PrintConfigServerCommand extends ServerCommand {
+public class ConfigListServerCommand extends ServerCommand {
     @Inject
     ConfiguratorService config;
 

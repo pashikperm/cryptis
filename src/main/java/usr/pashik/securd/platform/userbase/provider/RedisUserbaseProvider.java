@@ -2,6 +2,7 @@ package usr.pashik.securd.platform.userbase.provider;
 
 import usr.pashik.securd.platform.userbase.UserInfo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
 public class RedisUserbaseProvider extends UserbaseProvider {
     @Override
     public Map<String, UserInfo> fetchAllUsers() {
-        return null;
+        return new HashMap<>();
     }
 
     @Override

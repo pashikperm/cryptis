@@ -2,7 +2,7 @@ package usr.pashik.securd.platform.connection;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import usr.pashik.securd.platform.auth.AuthUserService;
+import usr.pashik.securd.platform.auth.AuthedUserService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import java.util.Set;
 @ApplicationScoped
 public class ConnectedClientService {
     @Inject
-    AuthUserService authUserService;
+    AuthedUserService authUserService;
 
     Logger log = LogManager.getLogger(ConnectedClientService.class);
 
@@ -30,10 +30,10 @@ public class ConnectedClientService {
     }
 
     public void unregisterConnection(ConnectedClient connectedClient) {
-        log.info(String.format("unregisterConnection %s", connectedClient));
-        connectedClients.remove(connectedClient);
-        // TODO: FIRE EVENT UNREGISTERED USER
+        // TODO: FIRE EVENT UNREGISTERED USER EVENT
         authUserService.unregisterUser(connectedClient);
+        connectedClients.remove(connectedClient);
+        log.info(String.format("unregisterConnection %s", connectedClient));
     }
 
     public Set<ConnectedClient> getClients() {

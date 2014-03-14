@@ -39,7 +39,8 @@ public class SecureClientProcessor extends ClientProcessor {
             while (true) {
                 RedisCommand command = client.readCommand();
                 if (command.getMnemonic() == RedisCommandMnemonic.AUTH) {
-                    //reauth
+                    authedUser = authService.reAuthUser(command, connectedClient);
+                    continue;
                 }
                 log.info(command);
                 server.sendCommand(command);

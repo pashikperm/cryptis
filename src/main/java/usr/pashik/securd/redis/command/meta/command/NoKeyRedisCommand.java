@@ -34,6 +34,6 @@ public class NoKeyRedisCommand extends RedisCommand {
 
     @Override
     public String toString() {
-        return String.format("NoKeyRedisCommand [mnemonic=%15s, type=%10s, family=%15s]", mnemonic, type, family);
+        return String.format("%15s [mnemonic=%15s, type=%10s, family=%15s]", "NoKeyRedisCommand", mnemonic, type, family);
     }
 }

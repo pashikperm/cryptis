@@ -41,7 +41,8 @@ public class PrimaryKeyRedisCommand extends RedisCommand {
 
     @Override
     public String toString() {
-        return String.format("PrimaryKeyRedisCommand [mnemonic=%15s, type=%10s, family=%15s, key=%s]",
+        return String.format("%15s [mnemonic=%15s, type=%10s, family=%15s, key=%s]",
+                             "PrimaryKeyRedisCommand",
                              mnemonic,
                              type,
                              family,

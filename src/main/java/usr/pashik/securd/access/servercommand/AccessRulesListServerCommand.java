@@ -5,7 +5,7 @@ import usr.pashik.securd.platform.commandengine.ServerCommand;
 /**
  * Created by pashik on 10.03.14 17:42.
  */
-public class PrintAccessRulesServerCommand extends ServerCommand {
+public class AccessRulesListServerCommand extends ServerCommand {
     @Override
     public String getName() {
         return "rules";

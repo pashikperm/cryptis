@@ -3,10 +3,7 @@ package usr.pashik.securd.platform.userbase;
 import usr.pashik.securd.platform.userbase.provider.UserbaseProvider;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Created by pashik on 10.03.14 17:48.
@@ -24,7 +21,7 @@ public class UserbaseService {
     public void refetchAllUsers() {
         userInfoMap.clear();
         for (UserbaseProvider provider : providers) {
-            userInfoMap.putAll(provider.fetchAllUsers());
+            refetchUsers(provider);
         }
     }
 
@@ -40,5 +37,15 @@ public class UserbaseService {
 
     public void registerProvider(UserbaseProvider userbaseProvider) {
         providers.add(userbaseProvider);
+        refetchUsers(userbaseProvider);
+
+    }
+
+    public void refetchUsers(UserbaseProvider provider) {
+        userInfoMap.putAll(provider.fetchAllUsers());
+    }
+
+    public Collection<UserInfo> getRegisteredUsers() {
+        return userInfoMap.values();
     }
 }

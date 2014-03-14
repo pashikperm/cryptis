@@ -6,4 +6,14 @@ package usr.pashik.securd.platform.userbase;
 public class UserInfo {
     public String id;       // should be unique
     public String password;
+
+    public UserInfo(String id, String password) {
+        this.id = id;
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("UserInfo [id=%s, password=%s]", id, password);
+    }
 }

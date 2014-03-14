@@ -34,9 +34,13 @@ public class SecurdApplication {
 
         ThreadGroup clientThreads = new ThreadGroup("clientProcessor");
         while (true) {
-            Socket clientSocket = serverSocket.accept();
-            InjectedRunnable clientProcessor = clientProcessorFabric.build(clientSocket);
-            new Thread(clientThreads, clientProcessor).start();
+            try {
+                Socket clientSocket = serverSocket.accept();
+                InjectedRunnable clientProcessor = clientProcessorFabric.build(clientSocket);
+                new Thread(clientThreads, clientProcessor).start();
+            } catch (Exception e) {
+                log.error(e);
+            }
         }
     }
 

@@ -35,6 +35,6 @@ public class UnknownRedisCommand extends RedisCommand {
 
     @Override
     public String toString() {
-        return String.format("UnknownRedisCommand [mnemonic=%15s, type=%10s, familly=%15s]", mnemonic, type, family);
+        return String.format("%10s [mnemonic=%15s, type=%10s, familly=%15s]", "UnknownRedisCommand", mnemonic, type, family);
     }
 }
