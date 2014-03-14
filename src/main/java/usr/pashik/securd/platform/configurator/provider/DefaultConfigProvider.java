@@ -15,7 +15,7 @@ public class DefaultConfigProvider extends ConfigProvider {
         put("redisPort", "6379");
         put("redisPassword", "pashik");
 
-        put("secureMode", "false");
+        put("secureMode", "true");
         put("authRetryMaxCount", "3");
         put("authRetryMaxCount", "3");
     }};

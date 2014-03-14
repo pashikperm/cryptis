@@ -5,7 +5,7 @@ import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.command.RedisCommandService;
 import usr.pashik.securd.redis.exception.RedisProtocolReadException;
 import usr.pashik.securd.redis.exception.RedisProtocolWriteException;
-import usr.pashik.securd.redis.protocol.response.RedisObject;
+import usr.pashik.securd.redis.protocol.object.RedisObject;
 
 import java.io.IOException;
 import java.net.Socket;

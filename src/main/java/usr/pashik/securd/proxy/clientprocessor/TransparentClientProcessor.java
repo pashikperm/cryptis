@@ -7,7 +7,7 @@ import usr.pashik.securd.platform.connection.ConnectedClient;
 import usr.pashik.securd.platform.connection.ConnectedClientService;
 import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.connection.RedisChannel;
-import usr.pashik.securd.redis.protocol.response.RedisObject;
+import usr.pashik.securd.redis.protocol.object.RedisObject;
 
 import javax.inject.Inject;
 
@@ -24,10 +24,6 @@ public class TransparentClientProcessor extends ClientProcessor {
     RedisChannel server;
 
     Logger log = LogManager.getLogger(TransparentClientProcessor.class);
-
-
-    TransparentClientProcessor() {
-    }
 
     @Override
     public void runInjected() {

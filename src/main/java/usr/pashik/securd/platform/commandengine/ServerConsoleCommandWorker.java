@@ -1,6 +1,10 @@
 package usr.pashik.securd.platform.commandengine;
 
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import sun.rmi.runtime.Log;
+import usr.pashik.securd.platform.commandengine.exception.UnknownServerCommand;
 import usr.pashik.securd.platform.thread.InjectedRunnable;
 
 import javax.inject.Inject;
@@ -17,6 +21,8 @@ public class ServerConsoleCommandWorker extends InjectedRunnable {
     Scanner input = new Scanner(System.in);
     PrintWriter output = new PrintWriter(System.out);
 
+    Logger log = LogManager.getLogger(ServerConsoleCommandWorker.class);
+
     @Override
     public void runInjected() {
         while (true) {
@@ -25,11 +31,13 @@ public class ServerConsoleCommandWorker extends InjectedRunnable {
                 executeCommand(command);
                 writeWelcome(true);
             } catch (Exception e) {
+                log.error("Command error", e);
+                writeWelcome(true);
             }
         }
     }
 
-    private void executeCommand(String command) {
+    private void executeCommand(String command) throws Exception {
         String commandResult = commandEngine.parseAndExecuteCommand(command);
         output.print(commandResult);
         output.flush();

@@ -31,16 +31,16 @@ public class ConfiguratorService {
     }
 
 
-    public String getParameter(String name) {
-        return get(name);
-    }
-
     public boolean isSecureMode() {
         return get("secureMode").equals("true");
     }
 
     public int getAuthRetryMaxCount() {
         return Integer.parseInt(get("authRetryMaxCount"));
+    }
+
+    public String getParameter(String name) {
+        return get(name);
     }
 
     private String get(String name) {

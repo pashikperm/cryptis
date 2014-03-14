@@ -1,5 +1,7 @@
 package usr.pashik.securd.platform.commandengine;
 
+import usr.pashik.securd.platform.commandengine.exception.UnknownServerCommand;
+
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Collection;
 import java.util.HashMap;
@@ -17,13 +19,13 @@ public class ServerCommandService {
         availableCommands = new HashMap<>();
     }
 
-    public String parseAndExecuteCommand(String rawCommand) {
+    public String parseAndExecuteCommand(String rawCommand) throws Exception {
         String commandName = getCommandName(rawCommand);
         String[] args = getCommandArguments(rawCommand);
 
         ServerCommand command = findCommand(commandName);
         if (command == null) {
-            return String.format("Unknown servercommand = %s", command);
+            throw new UnknownServerCommand(commandName);
         }
 
         return command.execute(args);

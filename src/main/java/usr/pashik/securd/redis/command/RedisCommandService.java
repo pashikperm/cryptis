@@ -3,8 +3,8 @@ package usr.pashik.securd.redis.command;
 import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.command.meta.RedisCommandFabric;
 import usr.pashik.securd.redis.command.meta.fabric.UnknownRedisCommandFabric;
-import usr.pashik.securd.redis.protocol.response.RedisObject;
-import usr.pashik.securd.redis.protocol.response.RedisObjectType;
+import usr.pashik.securd.redis.protocol.object.RedisObject;
+import usr.pashik.securd.redis.protocol.object.RedisObjectType;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Collection;

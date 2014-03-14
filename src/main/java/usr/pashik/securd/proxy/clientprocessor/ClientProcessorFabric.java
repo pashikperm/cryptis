@@ -1,7 +1,6 @@
 package usr.pashik.securd.proxy.clientprocessor;
 
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
-import usr.pashik.securd.platform.thread.BeanInjector;
 import usr.pashik.securd.platform.thread.InjectedRunnable;
 import usr.pashik.securd.redis.connection.RedisChannel;
 import usr.pashik.securd.redis.connection.RedisChannelService;

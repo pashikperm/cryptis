@@ -1,8 +1,8 @@
 package usr.pashik.securd.redis.protocol;
 
 import usr.pashik.securd.redis.exception.RedisProtocolReadException;
-import usr.pashik.securd.redis.protocol.response.RedisObject;
-import usr.pashik.securd.redis.protocol.response.RedisObjectType;
+import usr.pashik.securd.redis.protocol.object.RedisObject;
+import usr.pashik.securd.redis.protocol.object.RedisObjectType;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

@@ -4,8 +4,8 @@ import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.command.info.RedisCommandFamily;
 import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.command.info.RedisCommandType;
-import usr.pashik.securd.redis.protocol.response.RedisObject;
-import usr.pashik.securd.redis.protocol.response.RedisObjectType;
+import usr.pashik.securd.redis.protocol.object.RedisObject;
+import usr.pashik.securd.redis.protocol.object.RedisObjectType;
 
 /**
  * Created by pashik on 11.03.14 1:34.
