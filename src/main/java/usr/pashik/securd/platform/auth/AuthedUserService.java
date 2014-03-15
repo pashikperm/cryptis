@@ -29,13 +29,8 @@ public class AuthedUserService {
     Map<ConnectedClient, AuthedUser> auth2connUsers = new HashMap<>();
 
     public AuthedUser verifyCredentials(ConnectedClient connectedClient, String authString) throws IncorrectUserNameException, AlreadyAuthedException, IncorrectCredentialsException {
-        int userIdPosition = authString.indexOf(":");
-        if (userIdPosition == -1) {
-            throw new IncorrectUserNameException();
-        }
-
-        String userId = authString.substring(0, userIdPosition);
-        String password = authString.substring(userIdPosition + 1);
+        String userId = AuthLineFormatter.getUserId(authString);
+        String password = AuthLineFormatter.getPassword(authString);
 
         if (userId.length() == 0 || password.length() == 0) {
             throw new IncorrectCredentialsException();

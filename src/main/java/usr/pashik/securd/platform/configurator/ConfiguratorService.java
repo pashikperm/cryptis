@@ -39,6 +39,10 @@ public class ConfiguratorService {
         return Integer.parseInt(get("authRetryMaxCount"));
     }
 
+    public String getUserbaseFilename() {
+        return get("userbaseFile");
+    }
+
     public String getParameter(String name) {
         return get(name);
     }

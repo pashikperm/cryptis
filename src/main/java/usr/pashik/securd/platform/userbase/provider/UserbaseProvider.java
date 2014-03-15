@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by pashik on 10.03.14 17:49.
  */
 public abstract class UserbaseProvider implements Comparable<UserbaseProvider> {
-    public abstract Map<String, UserInfo> fetchAllUsers();
+    public abstract Map<String, UserInfo> reFetchAllUsers();
 
     public abstract boolean haveUser(UserInfo user);
 

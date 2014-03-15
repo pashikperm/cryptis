@@ -18,10 +18,10 @@ public class UserbaseService {
         return userInfoMap.get(id);
     }
 
-    public void refetchAllUsers() {
+    public void reFetchAllUsers() {
         userInfoMap.clear();
         for (UserbaseProvider provider : providers) {
-            refetchUsers(provider);
+            reFetchUsers(provider);
         }
     }
 
@@ -37,12 +37,12 @@ public class UserbaseService {
 
     public void registerProvider(UserbaseProvider userbaseProvider) {
         providers.add(userbaseProvider);
-        refetchUsers(userbaseProvider);
+        reFetchUsers(userbaseProvider);
 
     }
 
-    public void refetchUsers(UserbaseProvider provider) {
-        userInfoMap.putAll(provider.fetchAllUsers());
+    public void reFetchUsers(UserbaseProvider provider) {
+        userInfoMap.putAll(provider.reFetchAllUsers());
     }
 
     public Collection<UserInfo> getRegisteredUsers() {

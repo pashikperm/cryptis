@@ -15,7 +15,7 @@ public class DefaultUserbaseProvider extends UserbaseProvider {
     }};
 
     @Override
-    public Map<String, UserInfo> fetchAllUsers() {
+    public Map<String, UserInfo> reFetchAllUsers() {
         return users;
     }
 

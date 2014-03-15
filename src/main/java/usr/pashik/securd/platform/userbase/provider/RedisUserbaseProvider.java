@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class RedisUserbaseProvider extends UserbaseProvider {
     @Override
-    public Map<String, UserInfo> fetchAllUsers() {
+    public Map<String, UserInfo> reFetchAllUsers() {
         return new HashMap<>();
     }
 
