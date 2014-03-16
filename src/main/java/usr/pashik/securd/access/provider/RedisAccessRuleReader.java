@@ -14,6 +14,9 @@ import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.command.info.RedisCommandType;
 
 import javax.inject.Inject;
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
 import java.util.Arrays;
 
 /**
@@ -29,13 +32,16 @@ public class RedisAccessRuleReader {
         }
     }
 
-    public void readRule(String rawRule, RedisAccessBundle result) throws UnknownCommandSetException {
+    public void readRule(String rawRule, RedisAccessBundle result) throws UnknownCommandSetException, IOException {
         if (rawRule.startsWith("#")) return;
-        String[] tokens = rawRule.split(" ");
 
-        String rawMode = tokens[0].toUpperCase();
-        String rawCommandSet = tokens[1].toUpperCase();
-        String rawResource = tokens.length > 2 ? tokens[2] : null;
+        StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(rawRule));
+        tokenizer.nextToken();
+        String rawMode = tokenizer.sval.toUpperCase();
+        tokenizer.nextToken();
+        String rawCommandSet = tokenizer.sval.toUpperCase();
+        tokenizer.nextToken();
+        String rawResource = tokenizer.sval;
 
         AccessMode mode = AccessMode.valueOf(rawMode);
         AccessResource resource = parseResource(rawResource);

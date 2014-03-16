@@ -11,6 +11,7 @@ import usr.pashik.securd.platform.configurator.ConfiguratorService;
 
 import javax.inject.Inject;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -61,7 +62,7 @@ public class FileAccessBundleProvider extends AccessBundleProvider {
         return line.startsWith("!");
     }
 
-    private AccessBundle readBundleRules(Scanner input) throws UnknownCommandSetException {
+    private AccessBundle readBundleRules(Scanner input) throws UnknownCommandSetException, IOException {
         RedisAccessBundle result = new RedisAccessBundle();
         RedisAccessRuleReader reader = new RedisAccessRuleReader();
         while (input.hasNextLine()) {

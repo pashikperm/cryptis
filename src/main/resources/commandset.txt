@@ -14,4 +14,40 @@
 # supported class
 # (without key) NOKEY, (with primary key) PRIMARY
 
+# keys
+del	        delete	keys	primary
+dump	    read	keys	primary
+exists	    info	keys	primary
+keys	    info	keys	primary
+object	    read	keys	primary
+randomkey	info	keys	nokey
+rename	    write	keys	primary
+sort	    write	keys	primary
+type        info	keys	primary
 randomkey service keys nokey
+
+# strings
+append      write   strings     primary
+decr        write   strings     primary
+decrby      write   strings     primary
+get         read    strings     primary
+getrange    read    strings     primary
+getset      read    strings     primary
+incr        write   strings     primary
+incrby      write   strings     primary
+mget        read    strings     primary
+mset        write   strings     primary
+set         write   strings     primary
+strlen      info    strings     primary
+
+# hashes
+hdel	    delete	hashes  	primary
+hexists	    info	hashes	    primary
+hget	    read	hashes	    primary
+hgetall	    read	hashes	    primary
+hkeys	    info	hashes	    primary
+hlen	    info	hashes	    primary
+hmget	    read	hashes  	primary
+hmset	    write	hashes	    primary
+hset	    write	hashes	    primary
+hvals       read	hashes	    primary

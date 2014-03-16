@@ -13,6 +13,9 @@ import usr.pashik.securd.redis.command.meta.fabric.PrimaryKeyRedisCommandFabric;
 
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
@@ -42,16 +45,19 @@ public class FileCommandSet {
         }
     }
 
-    private void processCommandLine(String command) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    private void processCommandLine(String command) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, IOException {
         if (command.startsWith("#")) return;
         command = command.toUpperCase();
 
-        String[] tokens = command.split(" ");
-
-        String rawMnemonic = tokens[0];
-        String rawType = tokens[1];
-        String rawFamily = tokens[2];
-        String rawClazz = tokens[3];
+        StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(command));
+        tokenizer.nextToken();
+        String rawMnemonic = tokenizer.sval;
+        tokenizer.nextToken();
+        String rawType = tokenizer.sval;
+        tokenizer.nextToken();
+        String rawFamily = tokenizer.sval;
+        tokenizer.nextToken();
+        String rawClazz = tokenizer.sval;
 
         Class<? extends RedisCommandFabric> clazz = getCommandFabric(rawClazz);
 
