@@ -17,7 +17,7 @@ public class AccessBundleListServerCommand extends ServerCommand {
 
     @Override
     public String getName() {
-        return "access";
+        return "accessBundles";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AccessBundleListServerCommand extends ServerCommand {
         StringBuilder result = new StringBuilder("Access base policy: " + accessService.getBaseAccessMode());
         result.append("\nAccess bundle list:\n");
         for (Map.Entry<UserInfo, AccessBundle> bundle : bundleSet.entrySet()) {
-            result.append(String.format("%s bundle %s", bundle.getKey(), bundle.getValue()));
+            result.append(String.format("Bundle for %-50s is %s\n\n", bundle.getKey(), bundle.getValue()));
         }
         return result.toString();
     }

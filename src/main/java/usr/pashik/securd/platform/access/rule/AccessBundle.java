@@ -7,30 +7,30 @@ import usr.pashik.securd.platform.protocol.ProtocolCommand;
  * Created by pashik on 15.03.14 15:29.
  */
 public class AccessBundle {
-    AccessRule[] accessRules;
+    public AccessRule[][] accessRules;
 
-    public AccessBundle(AccessRule[] accessRules) {
-        this.accessRules = accessRules;
-    }
+    public AccessMode getCommandAccessMode(AccessMode baseAccessMode, ProtocolCommand command) {
+        AccessRule[] rules = accessRules[command.getId()];
+        if (rules == null) return baseAccessMode;
 
-    public boolean isAllowedCommand(AccessMode baseAccessMode, ProtocolCommand command) {
         AccessMode result = baseAccessMode;
-        for (AccessRule rule : accessRules) {
-            if (rule.isSatisfying(command)) {
-                result = rule.mode;
-            }
+        for (AccessRule rule : rules) {
+            if (rule.notEnoughArguments(command)) return AccessMode.DENY;
+            if (rule.isSatisfying(command)) result = rule.mode;
         }
-        return result == AccessMode.ALLOW;
+        return result;
     }
 
-    @Override
     public String toString() {
         StringBuilder result = new StringBuilder("AccessBundle [");
-        for (AccessRule accessRule : accessRules) {
-            result.append("\n\t");
-            result.append(accessRule);
+        for (int i = 0; i < accessRules.length; i++) {
+            AccessRule[] rules = accessRules[i];
+            if (rules == null) continue;
+            for (AccessRule rule : rules) {
+                result.append(String.format("\n\t%commandId=%d rule=%s", i, rule));
+            }
         }
-        result.append("]");
+        result.append("\n]");
         return result.toString();
     }
 }

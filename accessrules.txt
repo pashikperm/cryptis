@@ -1,0 +1,63 @@
+# DESCRIBES ACCESS RULES FOR REDIS
+# '#' is comment
+# File begins of base policy: ALLOW or DENY
+
+# BUNDLE FORMAT
+# format [USERNAME]
+# format RULE
+# format RULE
+# format EMPTY_LINE
+
+# RULE FORMAT
+# format MODE COMMANDSET [RESOURCE]
+
+# SUPPORTED COMMAND SET
+# RedisCommandType
+# (data) READ, WRITE, CREATE, DELETE, INFO; (no data access) SERVICE; UNKNOWN
+# RedisCommandFamily
+# KEYS, STRINGS, HASHES, LISTS, SETS, SORTED_SETS, PUB_SUB, TRANSACTIONS, SCRIPTING, CONNECTION, SERVER, UNKNOWN
+# RedisCommandMnemonic
+# GET, SET, KEYS, ...
+
+# SUPPORTED USERS
+# all from userbase, see UserbaseService
+
+# format example:
+# [pashik]
+# allow read
+# deny read marketing*
+#
+# [pashik2]
+# ..
+
+
+!deny
+
+[pashik]
+allow read
+deny read marketing*
+
+[pashik1]
+allow get
+deny get marketing*
+deny set
+
+[pashik2]
+allow read marketing*
+
+[pashik3]
+allow get marketing*
+allow get admin*
+allow get users*
+
+[pashik4]
+allow write marketing*
+
+[pashik5]
+allow read
+allow write
+allow service
+
+
+
+

@@ -28,4 +28,13 @@ public class UnknownRedisCommandFabric extends RedisCommandFabric {
     public RedisCommand create(Object... args) {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-30s [mnemonic=%20s, type=%15s, family=%15s]",
+                             "UnknownRedisCommandFabric",
+                             mnemonic,
+                             type,
+                             family);
+    }
 }

@@ -1,6 +1,8 @@
 package usr.pashik.securd.redis.command;
 
+import usr.pashik.securd.redis.command.info.RedisCommandFamily;
 import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
+import usr.pashik.securd.redis.command.info.RedisCommandType;
 import usr.pashik.securd.redis.command.meta.RedisCommandFabric;
 import usr.pashik.securd.redis.command.meta.fabric.UnknownRedisCommandFabric;
 import usr.pashik.securd.redis.protocol.object.RedisObject;
@@ -36,6 +38,14 @@ public class RedisCommandService {
 
     public RedisCommandFabric getCommandFabric(RedisCommandMnemonic commandMnemonic) {
         return commands.get(commandMnemonic.name());
+    }
+
+    public RedisCommandType getCommandType(RedisCommandMnemonic commandMnemonic) {
+        return getCommandFabric(commandMnemonic).type;
+    }
+
+    public RedisCommandFamily getCommandFamily(RedisCommandMnemonic commandMnemonic) {
+        return getCommandFabric(commandMnemonic).family;
     }
 
     public void registerFabric(RedisCommandFabric fabric) {

@@ -10,9 +10,9 @@ import usr.pashik.securd.redis.protocol.object.RedisObject;
  * Created by pashik on 12.03.14 0:01.
  */
 public abstract class RedisCommandFabric {
-    protected RedisCommandMnemonic mnemonic;
-    protected RedisCommandType type;
-    protected RedisCommandFamily family;
+    public RedisCommandMnemonic mnemonic;
+    public RedisCommandType type;
+    public RedisCommandFamily family;
 
     public abstract RedisCommand build(RedisObject raw);
 

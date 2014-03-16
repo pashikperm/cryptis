@@ -5,7 +5,8 @@ package usr.pashik.securd.redis.protocol.object;
  */
 public class RedisObjectFabric {
     public static final String CREDENTIALS_ERROR = "ERR invalid password";
-    public static final String ACCESS_EXCEPTION = "ERR operation not permitted";
+    public static final String ACCESS_ERROR = "ERR operation not permitted";
+    public static final String ARGUMENTS_ERROR = "ERR wrong number of arguments for 'keys' command";
     public static final String SUCCESS_AUTH = "OK";
 
     public static RedisObject getSimpleString(String message) {

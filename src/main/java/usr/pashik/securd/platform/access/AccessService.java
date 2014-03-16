@@ -5,6 +5,7 @@ import usr.pashik.securd.platform.access.provider.AccessBundleProvider;
 import usr.pashik.securd.platform.access.rule.AccessBundle;
 import usr.pashik.securd.platform.auth.AuthedUser;
 import usr.pashik.securd.platform.protocol.ProtocolCommand;
+import usr.pashik.securd.platform.userbase.UnknownUserInfo;
 import usr.pashik.securd.platform.userbase.UserInfo;
 import usr.pashik.securd.platform.userbase.UserbaseService;
 
@@ -47,7 +48,7 @@ public class AccessService {
         if (accessBundle == null) {
             return baseAccessMode == AccessMode.ALLOW;
         }
-        return accessBundle.isAllowedCommand(baseAccessMode, command);
+        return accessBundle.getCommandAccessMode(baseAccessMode, command) == AccessMode.ALLOW;
     }
 
     public void reFetchBundles(AccessBundleProvider provider) {
@@ -58,17 +59,24 @@ public class AccessService {
     public Map<UserInfo, AccessBundle> getAccessBundles() {
         Map<UserInfo, AccessBundle> result = new HashMap<>();
         for (Map.Entry<String, AccessBundle> bundleEntry : accessBundles.entrySet()) {
-            result.put(userbaseService.getUserInfo(bundleEntry.getKey()), bundleEntry.getValue());
+            UserInfo userInfo = userbaseService.getUserInfo(bundleEntry.getKey());
+            if (userInfo == null) {
+                userInfo = new UnknownUserInfo(bundleEntry.getKey());
+            }
+            result.put(userInfo, bundleEntry.getValue());
         }
         return result;
     }
 
     public void registerProvider(AccessBundleProvider bundleProvider) {
         providers.add(bundleProvider);
-        reFetchBundles(bundleProvider);
     }
 
     public AccessMode getBaseAccessMode() {
         return baseAccessMode;
+    }
+
+    public void initialize() {
+        reFetchAllBundles();
     }
 }

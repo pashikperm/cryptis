@@ -8,20 +8,26 @@ import usr.pashik.securd.platform.protocol.ProtocolCommand;
  */
 public class AccessRule {
     public AccessMode mode;
-    public Operation operation;
-    public Resource resource;
+    public AccessResource resource;
+
+    public AccessRule(AccessMode mode, AccessResource resource) {
+        this.mode = mode;
+        this.resource = resource;
+    }
 
     public boolean isSatisfying(ProtocolCommand command) {
-        if (operation.isSatisfying(command)) {
-            if (operation.needToCheckResource()) {
-                return resource.isSatisfying(command);
-            } else return true;
-        }
-        return false;
+        if (resource == null) return true;
+        return resource.isSatisfying(command);
+    }
+
+    public boolean notEnoughArguments(ProtocolCommand command) {
+        if (resource == null) return false;
+        return resource.notEnoughArguments(command);
     }
 
     @Override
     public String toString() {
-        return String.format("AccessRule [mode=%s, operation=%s, resource=%s", mode, operation, resource);
+        if (resource == null) return String.format("AccessRule [mode=%s, resource=*]", mode);
+        return String.format("AccessRule [mode=%s, resource=%s]", mode, resource);
     }
 }

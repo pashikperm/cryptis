@@ -37,8 +37,6 @@ public class UserbaseService {
 
     public void registerProvider(UserbaseProvider userbaseProvider) {
         providers.add(userbaseProvider);
-        reFetchUsers(userbaseProvider);
-
     }
 
     public void reFetchUsers(UserbaseProvider provider) {
@@ -47,5 +45,9 @@ public class UserbaseService {
 
     public Collection<UserInfo> getRegisteredUsers() {
         return userInfoMap.values();
+    }
+
+    public void initialize() {
+        reFetchAllUsers();
     }
 }

@@ -19,6 +19,10 @@ public abstract class RedisCommand implements ProtocolCommand {
         return mnemonic;
     }
 
+    public int getId() {
+        return mnemonic.ordinal();
+    }
+
     public RedisCommandType getType() {
         return type;
     }

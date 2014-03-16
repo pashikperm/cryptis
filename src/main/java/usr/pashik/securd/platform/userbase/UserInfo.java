@@ -14,6 +14,6 @@ public class UserInfo {
 
     @Override
     public String toString() {
-        return String.format("UserInfo [id=%s, password=%s]", id, password);
+        return String.format("%-15s [id=%s, password=%s]", "UserInfo", id, password);
     }
 }

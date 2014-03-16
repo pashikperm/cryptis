@@ -23,4 +23,8 @@ public class BeanInjector {
         return injectFields(BeanedRunner.getBeanManager(), instance);
     }
 
+    public static <T> T instance(Class<T> clazz) {
+        return BeanedRunner.getWeldContainer().instance().select(clazz).get();
+    }
+
 }

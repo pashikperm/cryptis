@@ -18,6 +18,7 @@ public class DefaultConfigProvider extends ConfigProvider {
         put("secureMode", "true");
         put("authRetryMaxCount", "3");
         put("userbaseFile", "userbase.txt");
+        put("accessRulesFile", "accessrules.txt");
     }};
 
     @Override

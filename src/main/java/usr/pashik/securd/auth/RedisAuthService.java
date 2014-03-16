@@ -72,7 +72,7 @@ public class RedisAuthService {
                     log.error("Auth exception", e);
                 }
             } else {
-                RedisObject notPermittedResponse = RedisObjectFabric.getError(RedisObjectFabric.ACCESS_EXCEPTION);
+                RedisObject notPermittedResponse = RedisObjectFabric.getError(RedisObjectFabric.ACCESS_ERROR);
                 client.sendResponse(notPermittedResponse);
             }
         }

@@ -32,4 +32,13 @@ public class PrimaryKeyRedisCommandFabric extends RedisCommandFabric {
         RedisObject command = RedisObjectFabric.getArray(new RedisObject[]{commandName, commandKey});
         return new PrimaryKeyRedisCommand(mnemonic, type, family, command);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-30s [mnemonic=%20s, type=%15s, family=%15s]",
+                             "PrimaryKeyRedisCommandFabric",
+                             mnemonic,
+                             type,
+                             family);
+    }
 }

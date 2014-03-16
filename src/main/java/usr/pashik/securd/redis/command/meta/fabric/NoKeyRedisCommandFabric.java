@@ -31,4 +31,13 @@ public class NoKeyRedisCommandFabric extends RedisCommandFabric {
         RedisObject command = RedisObjectFabric.getArray(new RedisObject[]{commandName});
         return new NoKeyRedisCommand(mnemonic, type, family, command);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-30s [mnemonic=%20s, type=%15s, family=%15s]",
+                             "NoKeyRedisCommandFabric",
+                             mnemonic,
+                             type,
+                             family);
+    }
 }

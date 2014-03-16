@@ -26,7 +26,7 @@ public class FileCommandSet {
 
     Logger log = LogManager.getLogger(FileCommandSet.class);
 
-    final String COMMAND_FILE_PATH = "/command_set.txt";
+    final String COMMAND_FILE_PATH = "/commandset.txt";
 
 
     public void onInitialized(@Observes ContainerInitialized initialized) {

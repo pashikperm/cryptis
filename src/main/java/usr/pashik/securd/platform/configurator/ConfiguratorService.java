@@ -43,6 +43,10 @@ public class ConfiguratorService {
         return get("userbaseFile");
     }
 
+    public String getAccessRulesFilename() {
+        return get("accessRulesFile");
+    }
+
     public String getParameter(String name) {
         return get(name);
     }

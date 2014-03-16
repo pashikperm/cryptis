@@ -1,2 +1,7 @@
 fileuser1:fileuser1
 myuser:myuser
+pashik2:pashik2
+pashik3:pashik3
+pashik4:pashik4
+pashik5:pashik5
+pashik6:pashik6

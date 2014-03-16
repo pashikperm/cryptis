@@ -58,7 +58,7 @@ public class ConfigListServerCommand extends ServerCommand {
             if (containsProhibitedParts) continue;
 
             Object value = method.invoke(config);
-            result.append(String.format("Config field [name=%30s, value=%15s]\n",
+            result.append(String.format("Config field [name=%30s, value=%45s]\n",
                                         methodName,
                                         value != null ? value : "null"));
         }

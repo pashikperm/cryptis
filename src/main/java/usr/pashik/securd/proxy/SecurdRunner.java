@@ -1,6 +1,7 @@
 package usr.pashik.securd.proxy;
 
 import usr.pashik.securd.platform.bean.BeanedRunner;
+import usr.pashik.securd.platform.thread.BeanInjector;
 import usr.pashik.securd.redis.exception.RedisAuthException;
 import usr.pashik.securd.redis.exception.RedisProtocolReadException;
 import usr.pashik.securd.redis.exception.RedisProtocolWriteException;
@@ -15,7 +16,7 @@ public class SecurdRunner extends BeanedRunner {
         new SecurdRunner().initialize(args);
 
         SecurdServiceActivator.activateServices();
-        getWeldContainer().instance().select(SecurdApplication.class).get().start();
+        BeanInjector.instance(SecurdApplication.class).start();
     }
 }
 
