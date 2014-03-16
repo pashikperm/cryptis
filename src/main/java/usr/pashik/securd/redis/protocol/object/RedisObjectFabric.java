@@ -4,6 +4,10 @@ package usr.pashik.securd.redis.protocol.object;
  * Created by pashik on 14.03.14 22:19.
  */
 public class RedisObjectFabric {
+    public static final String CREDENTIALS_ERROR = "ERR invalid password";
+    public static final String ACCESS_EXCEPTION = "ERR operation not permitted";
+    public static final String SUCCESS_AUTH = "OK";
+
     public static RedisObject getSimpleString(String message) {
         RedisObject response = new RedisObject();
         response.type = RedisObjectType.STRING;

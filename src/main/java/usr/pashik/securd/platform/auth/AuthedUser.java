@@ -23,6 +23,10 @@ public class AuthedUser {
         return client.getSocket();
     }
 
+    public UserInfo getInfo() {
+        return info;
+    }
+
     @Override
     public String toString() {
         return String.format("AuthedUser [client=%s, info=%s]", client, info);

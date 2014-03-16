@@ -1,5 +1,6 @@
 package usr.pashik.securd.redis.command;
 
+import usr.pashik.securd.platform.protocol.ProtocolCommand;
 import usr.pashik.securd.redis.command.info.RedisCommandFamily;
 import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.command.info.RedisCommandType;
@@ -8,7 +9,7 @@ import usr.pashik.securd.redis.protocol.object.RedisObject;
 /**
  * Created by pashik on 11.03.14 23:37.
  */
-public abstract class RedisCommand {
+public abstract class RedisCommand implements ProtocolCommand {
     protected RedisCommandMnemonic mnemonic;
     protected RedisCommandType type;
     protected RedisCommandFamily family;

@@ -2,7 +2,7 @@ package usr.pashik.securd.platform.userbase.provider;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import usr.pashik.securd.platform.auth.AuthLineFormatter;
+import usr.pashik.securd.platform.auth.AuthCredentialsSerializer;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
 import usr.pashik.securd.platform.userbase.UserInfo;
 
@@ -56,8 +56,8 @@ public class FileUserbaseProvider extends UserbaseProvider {
             while (input.hasNextLine()) {
                 try {
                     String authString = input.nextLine();
-                    String userId = AuthLineFormatter.getUserId(authString);
-                    String password = AuthLineFormatter.getPassword(authString);
+                    String userId = AuthCredentialsSerializer.getUserId(authString);
+                    String password = AuthCredentialsSerializer.getPassword(authString);
 
                     userbase.put(userId, new UserInfo(userId, password));
                 } catch (Exception e) {
@@ -76,7 +76,7 @@ public class FileUserbaseProvider extends UserbaseProvider {
         try {
             output = new PrintWriter(userbaseFile);
             for (UserInfo userInfo : userbase.values()) {
-                output.println(AuthLineFormatter.getAuthLine(userInfo));
+                output.println(AuthCredentialsSerializer.getAuthLine(userInfo));
             }
             output.close();
         } catch (FileNotFoundException e) {

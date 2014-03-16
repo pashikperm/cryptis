@@ -3,6 +3,7 @@ package usr.pashik.securd.proxy.clientprocessor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import usr.pashik.securd.auth.RedisAuthService;
+import usr.pashik.securd.platform.access.AccessService;
 import usr.pashik.securd.platform.auth.AuthedUser;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
 import usr.pashik.securd.platform.connection.ConnectedClient;
@@ -11,6 +12,7 @@ import usr.pashik.securd.redis.command.RedisCommand;
 import usr.pashik.securd.redis.command.info.RedisCommandMnemonic;
 import usr.pashik.securd.redis.connection.RedisChannel;
 import usr.pashik.securd.redis.protocol.object.RedisObject;
+import usr.pashik.securd.redis.protocol.object.RedisObjectFabric;
 
 import javax.inject.Inject;
 
@@ -22,9 +24,10 @@ public class SecureClientProcessor extends ClientProcessor {
     ConfiguratorService config;
     @Inject
     ConnectedClientService clientService;
-
     @Inject
     RedisAuthService authService;
+    @Inject
+    AccessService accessService;
 
     RedisChannel client;
     RedisChannel server;
@@ -40,6 +43,12 @@ public class SecureClientProcessor extends ClientProcessor {
                 RedisCommand command = client.readCommand();
                 if (command.getMnemonic() == RedisCommandMnemonic.AUTH) {
                     authedUser = authService.reAuthUser(command, connectedClient);
+                    continue;
+                }
+                if (!accessService.verifyAccess(authedUser, command)) {
+                    RedisObject response = RedisObjectFabric.getError(RedisObjectFabric.ACCESS_EXCEPTION);
+                    client.sendResponse(response);
+                    log.info(String.format("Non accessed command %s", command));
                     continue;
                 }
                 log.info(command);

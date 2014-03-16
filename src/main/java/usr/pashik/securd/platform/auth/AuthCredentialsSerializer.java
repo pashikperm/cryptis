@@ -7,7 +7,7 @@ import usr.pashik.securd.platform.userbase.UserInfo;
 /**
  * Created by pashik on 15.03.14 15:09.
  */
-public class AuthLineFormatter {
+public class AuthCredentialsSerializer {
 
     public static String getUserId(String authLine) throws IncorrectUserNameException {
         int userIdPosition = authLine.indexOf(":");

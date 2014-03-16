@@ -32,10 +32,6 @@ public class RedisAuthService {
 
     Logger log = LogManager.getLogger(RedisAuthService.class);
 
-    final String CREDENTIALS_ERROR = "ERR invalid password";
-    final String ACCESS_EXCEPTION = "ERR operation not permitted";
-    final String SUCCESS_AUTH = "OK";
-
     public AuthedUser authUser(ConnectedClient connectedClient) throws BruteforceAuthException, IOException, RedisProtocolWriteException, RedisProtocolReadException {
         RedisChannel client = new RedisChannel(connectedClient.getSocket());
         RedisCommand command = client.readCommand();
@@ -66,17 +62,17 @@ public class RedisAuthService {
                 try {
                     authedUser = authService.verifyCredentials(connectedClient, command.getPrimaryKey());
                     if (authedUser != null) {
-                        RedisObject successAuthResponse = RedisObjectFabric.getSimpleString(SUCCESS_AUTH);
+                        RedisObject successAuthResponse = RedisObjectFabric.getSimpleString(RedisObjectFabric.SUCCESS_AUTH);
                         client.sendResponse(successAuthResponse);
                         break;
                     }
                 } catch (Exception e) {
-                    RedisObject authErrorResponse = RedisObjectFabric.getError(CREDENTIALS_ERROR);
+                    RedisObject authErrorResponse = RedisObjectFabric.getError(RedisObjectFabric.CREDENTIALS_ERROR);
                     client.sendResponse(authErrorResponse);
                     log.error("Auth exception", e);
                 }
             } else {
-                RedisObject notPermittedResponse = RedisObjectFabric.getError(ACCESS_EXCEPTION);
+                RedisObject notPermittedResponse = RedisObjectFabric.getError(RedisObjectFabric.ACCESS_EXCEPTION);
                 client.sendResponse(notPermittedResponse);
             }
         }
