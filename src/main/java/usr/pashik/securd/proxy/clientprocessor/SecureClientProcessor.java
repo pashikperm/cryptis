@@ -48,7 +48,7 @@ public class SecureClientProcessor extends ClientProcessor {
                 if (!accessService.verifyAccess(authedUser, command)) {
                     RedisObject response = RedisObjectFabric.getError(RedisObjectFabric.ACCESS_EXCEPTION);
                     client.sendResponse(response);
-                    log.info(String.format("Non accessed command %s", command));
+                    log.info(String.format("Not allowed command %s", command));
                     continue;
                 }
                 log.info(command);

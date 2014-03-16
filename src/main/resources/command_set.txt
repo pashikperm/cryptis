@@ -1,0 +1,17 @@
+# FILE CONTAINS REDIS COMMAND DESCRIPTIONS
+# '#' is comment
+# format: NAME TYPE FAMILY CLASS
+
+# supported mnemonics
+# see RedisCommandMnemonic
+
+# supported type
+# (data) READ, WRITE, CREATE, DELETE, INFO; (no data access) SERVICE; UNKNOWN
+
+# supported family
+# KEYS, STRINGS, HASHES, LISTS, SETS, SORTED_SETS, PUB_SUB, TRANSACTIONS, SCRIPTING, CONNECTION, SERVER, UNKNOWN
+
+# supported class
+# (without key) NOKEY, (with primary key) PRIMARY
+
+randomkey service keys nokey

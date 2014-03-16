@@ -5,6 +5,9 @@ package usr.pashik.securd.redis.command.info;
  */
 public enum RedisCommandMnemonic {
     // KEYS
+    DEL, DUMP, EXISTS, EXPIRE, EXPIREAT, KEYS, MIGRATE,
+    MOVE, OBJECT, PERSIST, PEXPIRE, REXPIREAT, PTTL,
+    RANDOMKEY, RENAME, RENAMENX, RESTORE, SORT, TTL, SCAN,
     // STRINGS
     GET, SET, STRLEN,
     // HASHES
