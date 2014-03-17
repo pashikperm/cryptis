@@ -2,6 +2,8 @@ package usr.pashik.securd.platform.auth;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import usr.pashik.securd.crypto.BinaryService;
+import usr.pashik.securd.crypto.CryptoService;
 import usr.pashik.securd.platform.auth.exception.AlreadyAuthedException;
 import usr.pashik.securd.platform.auth.exception.IncorrectCredentialsException;
 import usr.pashik.securd.platform.auth.exception.IncorrectUserNameException;
@@ -28,6 +30,10 @@ public class AuthedUserService {
     Map<String, AuthedUser> authedUsers = new HashMap<>();
     Map<ConnectedClient, AuthedUser> auth2connUsers = new HashMap<>();
 
+    public boolean preVerifyCredentials(ConnectedClient connectedClient, String authString) throws IncorrectCredentialsException, AlreadyAuthedException, IncorrectUserNameException {
+        return verifyCredentials(connectedClient, authString) != null;
+    }
+
     public AuthedUser verifyCredentials(ConnectedClient connectedClient, String authString) throws IncorrectUserNameException, AlreadyAuthedException, IncorrectCredentialsException {
         String userId = AuthCredentialsSerializer.getUserId(authString);
         String password = AuthCredentialsSerializer.getPassword(authString);
@@ -47,9 +53,18 @@ public class AuthedUserService {
             throw new IncorrectCredentialsException();
         }
 
-        AuthedUser authedUser = new AuthedUser(connectedClient, userInfo);
-        registerAuthedUser(authedUser);
-        return authedUser;
+        return new AuthedUser(connectedClient, userInfo);
+    }
+
+    public void verifyTwoWayAuth(AuthedUser authedUser, long seed, String authString) throws IncorrectCredentialsException {
+        if (authString == null) {
+            throw new IncorrectCredentialsException();
+        }
+        String secretKeyString = authedUser.getInfo().secretKey;
+        byte[] secretKey = BinaryService.base642bytes(secretKeyString);
+        if (!authString.equals(CryptoService.hmacSha1(Long.toString(seed), secretKey))) {
+            throw new IncorrectCredentialsException();
+        }
     }
 
     public void registerAuthedUser(AuthedUser user) {

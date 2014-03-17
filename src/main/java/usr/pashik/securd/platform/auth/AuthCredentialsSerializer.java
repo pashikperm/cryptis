@@ -27,8 +27,9 @@ public class AuthCredentialsSerializer {
         if (userIdPosition == -1) {
             throw new IncorrectCredentialsException();
         }
-
-        String password = authLine.substring(userIdPosition + 1);
+        int secretKeyPosition = authLine.indexOf(":", userIdPosition + 1);
+        if (secretKeyPosition == -1) secretKeyPosition = authLine.length();
+        String password = authLine.substring(userIdPosition + 1, secretKeyPosition);
         if (password.length() == 0) {
             throw new IncorrectCredentialsException();
         }
@@ -36,6 +37,23 @@ public class AuthCredentialsSerializer {
     }
 
     public static String getAuthLine(UserInfo user) {
-        return user.id + ":" + user.password;
+        if (user.secretKey == null) {
+            return user.id + ":" + user.password;
+        }
+        return user.id + ":" + user.password + ":" + user.secretKey;
+    }
+
+    public static String getSecretKey(String authLine) throws IncorrectCredentialsException {
+        int userIdPosition = authLine.indexOf(":");
+        if (userIdPosition == -1) {
+            throw new IncorrectCredentialsException();
+        }
+        int secretKeyPosition = authLine.indexOf(":", userIdPosition + 1);
+        if (secretKeyPosition == -1) return null;
+        String secretKey = authLine.substring(secretKeyPosition + 1);
+        if (secretKey.length() == 0) {
+            throw new IncorrectCredentialsException();
+        }
+        return secretKey;
     }
 }

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import usr.pashik.securd.platform.auth.AuthedUser;
 import usr.pashik.securd.platform.auth.AuthedUserService;
 import usr.pashik.securd.platform.auth.exception.BruteforceAuthException;
+import usr.pashik.securd.platform.auth.exception.IncorrectTwoWayAuth;
 import usr.pashik.securd.platform.configurator.ConfiguratorService;
 import usr.pashik.securd.platform.connection.ConnectedClient;
 import usr.pashik.securd.platform.thread.BeanInjector;
@@ -19,6 +20,7 @@ import usr.pashik.securd.redis.protocol.object.RedisObjectFabric;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.security.SecureRandom;
 
 /**
  * Created by pashik on 10.03.14 16:44.
@@ -62,9 +64,28 @@ public class RedisAuthService {
                 try {
                     authedUser = authService.verifyCredentials(connectedClient, command.getPrimaryKey());
                     if (authedUser != null) {
-                        RedisObject successAuthResponse = RedisObjectFabric.getSimpleString(RedisObjectFabric.SUCCESS_AUTH);
-                        client.sendResponse(successAuthResponse);
-                        break;
+                        if (!authedUser.getInfo().needTwoWayAuth()) {
+                            authService.registerAuthedUser(authedUser);
+                            RedisObject successAuthResponse = RedisObjectFabric.getSimpleString(RedisObjectFabric.SUCCESS_AUTH);
+                            client.sendResponse(successAuthResponse);
+                            break;
+                        } else {
+                            long seed = new SecureRandom().nextLong();
+                            RedisObject twoWayResponse = RedisObjectFabric.getError(
+                                    RedisObjectFabric.TWOWAY_AUTH_ERROR +
+                                            seed);
+                            client.sendResponse(twoWayResponse);
+
+                            command = client.readCommand();
+                            if (command.getMnemonic() != RedisCommandMnemonic.AUTH) {
+                                throw new IncorrectTwoWayAuth();
+                            }
+                            authService.verifyTwoWayAuth(authedUser, seed, command.getPrimaryKey());
+                            authService.registerAuthedUser(authedUser);
+                            RedisObject successAuthResponse = RedisObjectFabric.getSimpleString(RedisObjectFabric.SUCCESS_AUTH);
+                            client.sendResponse(successAuthResponse);
+                            break;
+                        }
                     }
                 } catch (Exception e) {
                     RedisObject authErrorResponse = RedisObjectFabric.getError(RedisObjectFabric.CREDENTIALS_ERROR);

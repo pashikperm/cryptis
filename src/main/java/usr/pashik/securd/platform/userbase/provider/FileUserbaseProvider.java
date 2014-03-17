@@ -58,8 +58,9 @@ public class FileUserbaseProvider extends UserbaseProvider {
                     String authString = input.nextLine();
                     String userId = AuthCredentialsSerializer.getUserId(authString);
                     String password = AuthCredentialsSerializer.getPassword(authString);
+                    String secretKey = AuthCredentialsSerializer.getSecretKey(authString);
 
-                    userbase.put(userId, new UserInfo(userId, password));
+                    userbase.put(userId, new UserInfo(userId, password, secretKey));
                 } catch (Exception e) {
                     log.error("File userbase read error", e);
                 }
@@ -72,7 +73,7 @@ public class FileUserbaseProvider extends UserbaseProvider {
 
     public void reWriteFile() {
         reInjectFile();
-        PrintWriter output = null;
+        PrintWriter output;
         try {
             output = new PrintWriter(userbaseFile);
             for (UserInfo userInfo : userbase.values()) {

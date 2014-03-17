@@ -4,9 +4,10 @@ package usr.pashik.securd.redis.protocol.object;
  * Created by pashik on 14.03.14 22:19.
  */
 public class RedisObjectFabric {
+    public static final String TWOWAY_AUTH_ERROR = "ERR invalid password r=";
     public static final String CREDENTIALS_ERROR = "ERR invalid password";
     public static final String ACCESS_ERROR = "ERR operation not permitted";
-    public static final String ARGUMENTS_ERROR = "ERR wrong number of arguments for 'keys' command";
+    public static final String ARGUMENTS_ERROR = "ERR wrong number of arguments for command";
     public static final String SUCCESS_AUTH = "OK";
 
     public static RedisObject getSimpleString(String message) {
