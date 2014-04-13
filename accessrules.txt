@@ -57,6 +57,7 @@ allow write marketing*
 allow read
 allow write
 allow service
+allow delete
 
 [pashik7]
 allow read

@@ -57,6 +57,11 @@ public class FileCommandSet {
         tokenizer.nextToken();
         String rawFamily = tokenizer.sval;
         tokenizer.nextToken();
+        if (tokenizer.sval == null) {
+            tokenizer.nextToken();
+            rawFamily += "_" + tokenizer.sval;
+            tokenizer.nextToken();
+        }
         String rawClazz = tokenizer.sval;
 
         Class<? extends RedisCommandFabric> clazz = getCommandFabric(rawClazz);

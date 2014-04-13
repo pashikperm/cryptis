@@ -24,7 +24,7 @@ randomkey	info	keys	nokey
 rename	    write	keys	primary
 sort	    write	keys	primary
 type        info	keys	primary
-randomkey service keys nokey
+randomkey   service keys    nokey
 
 # strings
 append      write   strings     primary
@@ -51,3 +51,21 @@ hmget	    read	hashes  	primary
 hmset	    write	hashes	    primary
 hset	    write	hashes	    primary
 hvals       read	hashes	    primary
+
+# sorted sets
+zadd	            write	    sorted_sets	    primary
+zcard	            info	    sorted_sets	    primary
+zcount	            info	    sorted_sets	    primary
+zincrby	            write	    sorted_sets	    primary
+zrange	            read	    sorted_sets	    primary
+zrangebyscore	    read	    sorted_sets	    primary
+zrank	            info	    sorted_sets	    primary
+zrem	            delete	    sorted_sets	    primary
+zremrangebyrank	    delete	    sorted_sets	    primary
+zremrangebyscore	delete	    sorted_sets	    primary
+zrevrange	        read	    sorted_sets	    primary
+zrevrangebyscore	read	    sorted_sets	    primary
+zscore	            info	    sorted_sets	    primary
+
+# database
+flushdb     delete  SERVER      nokey
