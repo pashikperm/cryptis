@@ -20,7 +20,7 @@ public enum RedisCommandMnemonic {
     // TRANSACTIONS
     // SCRIPTING
     // CONNECTION
-    PING, AUTH, ECHO,
+    PING, AUTH, ECHO, QUIT,
     // SERVER
     FLUSHDB,
     // UNKNOWN

@@ -68,4 +68,7 @@ zrevrangebyscore	read	    sorted_sets	    primary
 zscore	            info	    sorted_sets	    primary
 
 # database
-flushdb     delete  SERVER      nokey
+flushdb     delete  server      nokey
+
+# connection
+quit        service connection  nokey

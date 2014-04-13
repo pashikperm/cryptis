@@ -51,7 +51,7 @@ public class SecureClientProcessor extends ClientProcessor {
                     log.info(String.format("Not allowed command %s", command));
                     continue;
                 }
-                log.info(command);
+//                log.info(command);
                 server.sendCommand(command);
                 RedisObject response = server.readResponse();
                 client.sendResponse(response);

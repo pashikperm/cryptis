@@ -42,8 +42,7 @@ public class RedisPerfomanceTest {
         int queryCount = 3000;
         int responceLimit = 10;
 
-//        insert(rowCount);
-        insertBatch(rowCount);
+        insert(rowCount);
         selectByEqual(rowCount, queryCount);
         selectByRange(rowCount, queryCount, responceLimit);
         selectTop(queryCount, responceLimit);
@@ -74,8 +73,7 @@ public class RedisPerfomanceTest {
 
         r.flushDB();
 
-        Map<String, String> user = new HashMap<String, String>();
-        Pipeline p = r.pipelined();
+        Map<String, String> user = new HashMap<>();
 
         start();
         for (int i = 1; i <= rowCount; i++) {
@@ -83,9 +81,8 @@ public class RedisPerfomanceTest {
             prepareDummyData(user, i);
 
             String id = Integer.toString(i);
-            p.hmset("users:" + id, user);
-            p.zadd("users:deposit", userDeposit(i), id);
-            p.sync();
+            r.hmset("users:" + id, user);
+            r.zadd("users:deposit", userDeposit(i), id);
         }
         finish();
         printPerfomance(rowCount);
@@ -96,7 +93,7 @@ public class RedisPerfomanceTest {
 
         r.flushDB();
 
-        Map<String, String> user = new HashMap<String, String>();
+        Map<String, String> user = new HashMap<>();
         Pipeline p = r.pipelined();
 
         start();
@@ -190,15 +187,13 @@ public class RedisPerfomanceTest {
         out.println("[delete]");
 
         Random rnd = new Random(RANDOM_SEED);
-        Pipeline p = r.pipelined();
 
         start();
         for (int i = 0; i < queryCount; i++) {
             String id = Integer.toString(rnd.nextInt(rowCount));
 
-            p.del("users:" + id);
-            p.zrem("users:deposit", id);
-            p.sync();
+            r.del("users:" + id);
+            r.zrem("users:deposit", id);
         }
         finish();
         printPerfomance(queryCount);
@@ -207,7 +202,7 @@ public class RedisPerfomanceTest {
     private void initDummyData(int rowCount) {
         r.flushDB();
 
-        Map<String, String> user = new HashMap<String, String>();
+        Map<String, String> user = new HashMap<>();
         Pipeline p = r.pipelined();
         for (int i = 1; i <= rowCount; i++) {
             user.clear();
