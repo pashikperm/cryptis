@@ -40,12 +40,12 @@ public class RedisPerfomanceTest {
 
         int rowCount = 100000;
         int queryCount = 3000;
-        int responceLimit = 10;
+        int responseLimit = 10;
 
         insert(rowCount);
         selectByEqual(rowCount, queryCount);
-        selectByRange(rowCount, queryCount, responceLimit);
-        selectTop(queryCount, responceLimit);
+        selectByRange(rowCount, queryCount, responseLimit);
+        selectTop(queryCount, responseLimit);
         updateSet(rowCount, queryCount);
         updateSum(rowCount, queryCount);
         delete(rowCount, queryCount);
