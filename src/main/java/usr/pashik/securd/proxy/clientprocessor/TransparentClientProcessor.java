@@ -31,7 +31,7 @@ public class TransparentClientProcessor extends ClientProcessor {
         try {
             while (true) {
                 RedisCommand command = client.readCommand();
-                log.info(command);
+//                log.info(command);
                 server.sendCommand(command);
                 RedisObject response = server.readResponse();
                 client.sendResponse(response);

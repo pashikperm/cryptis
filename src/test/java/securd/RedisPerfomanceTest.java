@@ -19,7 +19,7 @@ public class RedisPerfomanceTest {
     final int RANDOM_SEED = 0;
     final int MAXDEPOSIT = (int) 1e8;
 
-    final boolean USE_SECURD = true;
+    final boolean USE_SECURD = false;
     final int SECURD_PORT = 7070;
 
     Scanner in;

@@ -60,9 +60,9 @@ allow service
 allow delete
 
 [pashik8]
-allow read users:*
-deny read users:nickolay
-allow write
+allow read
+allow write users:*
+deny write users:nickolay
 allow service
 allow delete
 
