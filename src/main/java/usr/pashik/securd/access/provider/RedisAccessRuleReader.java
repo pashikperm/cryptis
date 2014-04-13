@@ -35,13 +35,10 @@ public class RedisAccessRuleReader {
     public void readRule(String rawRule, RedisAccessBundle result) throws UnknownCommandSetException, IOException {
         if (rawRule.startsWith("#")) return;
 
-        StreamTokenizer tokenizer = new StreamTokenizer(new StringReader(rawRule));
-        tokenizer.nextToken();
-        String rawMode = tokenizer.sval.toUpperCase();
-        tokenizer.nextToken();
-        String rawCommandSet = tokenizer.sval.toUpperCase();
-        tokenizer.nextToken();
-        String rawResource = tokenizer.sval;
+        String[] arrayRule = rawRule.split(" ");
+        String rawMode = arrayRule[0].toUpperCase();
+        String rawCommandSet = arrayRule[1].toUpperCase();
+        String rawResource = arrayRule.length > 2 ? arrayRule[2] : null;
 
         AccessMode mode = AccessMode.valueOf(rawMode);
         AccessResource resource = parseResource(rawResource);

@@ -19,7 +19,7 @@ public class RedisPerfomanceTest {
     final int RANDOM_SEED = 0;
     final int MAXDEPOSIT = (int) 1e8;
 
-    final boolean USE_SECURD = false;
+    final boolean USE_SECURD = true;
     final int SECURD_PORT = 7070;
 
     Scanner in;
@@ -232,7 +232,7 @@ public class RedisPerfomanceTest {
 
     private Jedis createRedisClient() {
         Jedis r = USE_SECURD ? new Jedis("localhost", SECURD_PORT) : new Jedis("localhost");
-        r.auth(USE_SECURD ? "pashik5:pashik5" : "pashik");
+        r.auth(USE_SECURD ? "pashik8:pashik8" : "pashik");
         return r;
     }
 
